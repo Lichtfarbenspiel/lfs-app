@@ -1,6 +1,5 @@
 <script lang="ts">
     import { Link, page } from '@inertiajs/svelte';
-    import BookOpen from 'lucide-svelte/icons/book-open';
     import Folder from 'lucide-svelte/icons/folder';
     import LayoutGrid from 'lucide-svelte/icons/layout-grid';
     import Menu from 'lucide-svelte/icons/menu';
@@ -8,17 +7,7 @@
     import AppLogo from '@/components/LFS/AppLogo.svelte';
     import AppLogoIcon from '@/components/LFS/AppLogoIcon.svelte';
     import Breadcrumbs from '@/components/Breadcrumbs.svelte';
-    import {
-        Avatar,
-        AvatarFallback,
-        AvatarImage,
-    } from '@/components/ui/avatar';
     import { Button } from '@/components/ui/button';
-    import {
-        DropdownMenu,
-        DropdownMenuContent,
-        DropdownMenuTrigger,
-    } from '@/components/ui/dropdown-menu';
     import {
         NavigationMenu,
         NavigationMenuItem,
@@ -38,12 +27,12 @@
         TooltipProvider,
         TooltipTrigger,
     } from '@/components/ui/tooltip';
-    import UserMenuContent from '@/components/UserMenuContent.svelte';
     import { currentUrlState } from '@/lib/currentUrl.svelte';
-    import { getInitials } from '@/lib/initials';
     import { toUrl } from '@/lib/utils';
     import { dashboard } from '@/routes';
     import type { BreadcrumbItem, NavItem } from '@/types';
+    import ToggleTheme from './ui/toggle-theme/ToggleTheme.svelte';
+    import AppearanceTabs from '../AppearanceTabs.svelte';
 
     let {
         breadcrumbs = [],
@@ -55,7 +44,7 @@
     const url = currentUrlState();
 
     const activeItemStyles =
-        'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
+        'text-neutral-900 dark:text-neutral-100';
 
     const mainNavItems: NavItem[] = [
         {
@@ -79,16 +68,22 @@
 
 <div>
     <div class="border-b border-sidebar-border/80">
-        <div class="mx-auto flex h-16 items-between px-4 md:max-w-7xl">
+        <div
+            class="mx-auto flex h-16 items-between justify-between px-4 md:max-w-7xl"
+        >
+            <Link href={toUrl(dashboard())} class="flex items-center gap-x-2">
+                <AppLogo />
+            </Link>
+
             <!-- Mobile Menu -->
-            <div class="lg:hidden">
+            <div class="lg:hidden place-content-center">
                 <Sheet>
                     <SheetTrigger asChild>
                         {#snippet children(props)}
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                class="mr-2 h-9 w-9"
+                                class="mr-2 h-9 w-9 self-center"
                                 onclick={props.onclick}
                                 aria-expanded={props['aria-expanded']}
                             >
@@ -96,7 +91,7 @@
                             </Button>
                         {/snippet}
                     </SheetTrigger>
-                    <SheetContent side="right" class="w-[300px] p-6">
+                    <SheetContent side="right" class="w-[300px] p-6 right-0">
                         <SheetTitle class="sr-only">Navigation menu</SheetTitle>
                         <SheetHeader class="flex justify-start text-left">
                             <AppLogoIcon
@@ -110,7 +105,7 @@
                                 {#each mainNavItems as item (toUrl(item.href))}
                                     <Link
                                         href={toUrl(item.href)}
-                                        class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium hover:bg-accent {url.whenCurrentUrl(
+                                        class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium font-serif hover:bg-accent {url.whenCurrentUrl(
                                             item.href,
                                             url.currentUrl,
                                             activeItemStyles,
@@ -123,15 +118,12 @@
                                         {item.title}
                                     </Link>
                                 {/each}
+                                <ToggleTheme />
                             </nav>
                         </div>
                     </SheetContent>
                 </Sheet>
             </div>
-
-            <Link href={toUrl(dashboard())} class="flex items-center gap-x-2">
-                <AppLogo />
-            </Link>
 
             <!-- Desktop Menu -->
             <div class="hidden h-full lg:flex lg:flex-1 justify-end-safe">
@@ -164,13 +156,15 @@
                                 {/if}
                             </NavigationMenuItem>
                         {/each}
+
+                        <ToggleTheme />
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
 
             <!--   -->
 
-                <!-- <DropdownMenu>
+            <!-- <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                         {#snippet children(props)}
                             <Button

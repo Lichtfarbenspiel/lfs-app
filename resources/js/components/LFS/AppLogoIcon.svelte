@@ -8,6 +8,6 @@
     } = $props();
 </script>
 
-<span class="mb-0.5 truncate leading-tight font-old-standard {className}"
-    >L</span
+<span class="mb-0.5 truncate leading-tight font-logo {className}"
+    >LFS</span
 >
