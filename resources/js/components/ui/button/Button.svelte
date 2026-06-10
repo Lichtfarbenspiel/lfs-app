@@ -8,7 +8,8 @@
         | 'ghost'
         | 'destructive'
         | 'outline'
-        | 'link';
+        | 'link'
+        | 'simple';
     type Size = 'default' | 'sm' | 'lg' | 'icon';
     type AsChildProps = {
         class?: string;
@@ -28,6 +29,7 @@
             'bg-destructive text-destructive-foreground shadow hover:bg-destructive/90',
         outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
+        simple: 'bg-primary text-primary-foreground hover:text-accent-foreground',
     };
 
     const sizes: Record<Size, string> = {

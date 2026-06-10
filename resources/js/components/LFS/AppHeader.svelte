@@ -44,7 +44,7 @@
     const url = currentUrlState();
 
     const activeItemStyles =
-        'text-neutral-900 dark:text-neutral-100';
+        'text-(--color-dark-green) dark:text-(--color-light-mint)';
 
     const mainNavItems: NavItem[] = [
         {
@@ -66,10 +66,10 @@
     ];
 </script>
 
-<div>
-    <div class="border-b border-sidebar-border/80">
+<div class="sticky top-0 bg-background">
+    <div class="border-b border-sidebar-border/80 ">
         <div
-            class="mx-auto flex h-16 items-between justify-between px-4 md:max-w-7xl"
+            class="mx-auto flex h-(--header-height) items-between justify-between px-4 md:max-w-7xl"
         >
             <Link href={toUrl(dashboard())} class="flex items-center gap-x-2">
                 <AppLogo />
@@ -95,7 +95,7 @@
                         <SheetTitle class="sr-only">Navigation menu</SheetTitle>
                         <SheetHeader class="flex justify-start text-left">
                             <AppLogoIcon
-                                class="size-6 text-black dark:text-white"
+                                class="size-6 text-(--color-dark-green) dark:text-white"
                             />
                         </SheetHeader>
                         <div
@@ -105,10 +105,10 @@
                                 {#each mainNavItems as item (toUrl(item.href))}
                                     <Link
                                         href={toUrl(item.href)}
-                                        class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium font-serif hover:bg-accent {url.whenCurrentUrl(
+                                        class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium font-serif hover:text-accent-foreground {url.whenCurrentUrl(
                                             item.href,
                                             url.currentUrl,
-                                            activeItemStyles,
+                                            activeItemStyles + ' underline underline-offset-4',
                                             '',
                                         ) ?? ''}"
                                     >
@@ -151,7 +151,7 @@
                                 </Link>
                                 {#if url.isCurrentUrl(item.href, url.currentUrl)}
                                     <div
-                                        class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"
+                                        class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-(--color-dark-green) dark:bg-(--color-light-mint)"
                                     ></div>
                                 {/if}
                             </NavigationMenuItem>

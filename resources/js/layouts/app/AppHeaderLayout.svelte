@@ -17,7 +17,7 @@
 
 <AppShell variant="header">
     <AppHeader {breadcrumbs} />
-    <AppContent variant="header">
+    <AppContent variant="header" >
         {@render children?.()}
     </AppContent>
     <Toaster />
