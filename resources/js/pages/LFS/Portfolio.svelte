@@ -1,11 +1,34 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
     import AppHead from '@/components/AppHead.svelte';
     import StorageController from '@/actions/App/Http/Controllers/StorageController';
 
-    // import FullImage from '@/components/LFS/ui/full-image';
+    import { useHttp } from '@inertiajs/svelte';
 
-    let image = StorageController.index('IMG_9986.png').url;
-    console.log(image);
+    const http = useHttp({
+        folder: 'Equine',
+    });
+    const route = StorageController.GetGallery().url;
+
+    let gallery: string[] = [];
+
+   
+
+    onMount(async () => {
+         http.get(route, {
+        onSuccess: (response) => {
+            gallery = response; //ToDo: fix this
+            console.log('http response', response);
+        },
+        onError: (errors) => {
+            console.log('http errors', errors);
+        },
+    });
+
+        console.log('onmount gallery', gallery);
+    });
+
+    let index = 0;
 </script>
 
 <AppHead title="Home" />
@@ -18,7 +41,21 @@
     </div>
     <div>
         <section class="grid grid-cols-2 md:grid-cols-4 gap-2 px-5">
-            <div class="grid gap-4">
+            {#each gallery as image}
+                <div>
+                    <img class="h-auto max-w-full rounded-lg" src={image} />
+                </div>
+                <!-- {#if i == index}
+                    <div class="grid gap-4">
+                {/if}
+                    
+
+                {#if i == index + 4}
+                    </div>
+                {/if} -->
+            {/each}
+
+            <!-- <div class="grid gap-4">
                 <div>
                     <img class="h-auto max-w-full rounded-lg" src={image} />
                 </div>
@@ -74,7 +111,7 @@
                 <div>
                     <img class="h-auto max-w-full rounded-lg" src={image} />
                 </div>
-            </div>
+            </div> -->
         </section>
     </div>
 </div>

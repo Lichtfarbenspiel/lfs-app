@@ -8,6 +8,8 @@ Route::inertia('/portfolio', 'LFS/Portfolio')->name('portfolio');
 
 
 Route::get("/images/{filename}", [StorageController::class, "index"])->name("image.show");
+Route::get("/gallery", [StorageController::class, "GetGallery"])->name("gallery.show");
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'Dashboard')->name('dashboard');
