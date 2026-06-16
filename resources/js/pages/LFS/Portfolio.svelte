@@ -12,26 +12,43 @@
 
     import { useHttp } from '@inertiajs/svelte';
     import Button from '@/components/ui/button/Button.svelte';
+    import { currentUrlState } from '@/lib/currentUrl.svelte';
+
+    const url = currentUrlState();
+    const curUrl = new URL(window.location.href);
+    const activeItemStyles =
+        'text-(--color-dark-green) dark:text-(--color-light-mint)';
 
     const galleryKeyList = ['Equine', 'Wedding'];
 
     const http = useHttp({
         folder: galleryKeyList,
     });
+
     const route = StorageController.GetGallery().url;
+    let galleryMenu;
+    let menuItems;
 
     let galleryKey = 'Equine';
+    const fallbackGallery = galleryKey;
     let galleryData;
     let imageGalleryElement;
 
     onMount(async () => {
         imageGalleryElement = document.getElementById('image-gallery');
 
+        galleryMenu = document.getElementById('gallery-menu');
+        menuItems = galleryMenu?.getElementsByTagName('button');
+        console.log(galleryMenu, menuItems);
+
         http.get(route, {
             onSuccess: (response) => {
                 galleryData = response;
+                // let params = new URLSearchParams(document.location.search);
+                let galleryStored = localStorage.getItem('gallery') ?? null; //params? params.get("gallery") : null;
+                if (galleryStored) galleryKey = galleryStored;
                 assembleGallery(galleryKey); //ToDo: error handling
-                console.log('http response', response);
+                // console.log('http response', response);
                 finaliseGalleryMenu();
             },
             onError: (errors) => {
@@ -40,37 +57,105 @@
         });
     });
 
-
-
     function assembleGallery(key: string) {
         try {
-            const gallery = galleryData[key]; // check for error
+            const gallery = galleryData[key]; // check for error use fallback
             let result = '';
-            gallery.forEach((image) => {
-                result += `<div><img class="h-auto max-w-full rounded-lg" src=${image} /></div>`;
-            });
+            imageGalleryElement.innerHTML = '';
+
+            const cols = 4; // To do get current col amount maybe?
+            let division =
+                gallery.length <= cols
+                    ? 0
+                    : Math.round(gallery.length / cols) - 1;
+            let startpoint = 0;
+            let breakpoint = division;
+
+            // console.log('start breakpoint', breakpoint);
+
+            // console.log('start breakpoint', breakpoint);
+
+            for (let i = 0; i < gallery.length; i++) {
+                let image = `<div id=${i} class="h-fit"><img class="max-w-full rounded-lg" src=${gallery[i]} /></div>`;
+                console.log(`${i} startpoint`, startpoint);
+                console.log(`${i} breakpoint`, breakpoint);
+
+                if (i == startpoint && i == breakpoint) {
+                    result += `<div class="grid gap-4 flex">${image}</div>`;
+                } else if (i == startpoint) {
+                    result += `<div class="grid gap-4 flex">${image}`;
+                } else if (i == breakpoint) {
+                    result += `${image}</div>`;
+                    startpoint = i + 1;
+                    breakpoint = startpoint + division;
+
+                    // console.log(`${i} new startpoint`, startpoint);
+
+                    // console.log(`${i} new breakpoint`, breakpoint);
+                } else {
+                    result += image;
+                }
+            }
 
             imageGalleryElement.innerHTML = result;
+            localStorage.setItem('gallery', key);
+            UpdateMenuItemActive();
+
+            // updateURLParam('gallery', key);
         } catch (e) {
             console.error('Could not assemble gallery: ' + e);
         }
     }
 
-    function finaliseGalleryMenu() {
-        const galleryMenu = document.getElementById('gallery-menu');
-        const menuItems = galleryMenu?.getElementsByTagName('button');
-        console.log(galleryMenu, menuItems);
+    function updateURLParam(key: string, value: string) {
+        curUrl.searchParams.set(key, value);
+        // for (const key of Object.keys(params)) {
+        //     curUrl.searchParams.set(key, params[key]); // check for validity
+        // }
+        window.history.replaceState(null, '', curUrl);
+    }
 
+    function finaliseGalleryMenu() {
         if (!menuItems) return;
 
         for (const item of menuItems) {
-            item.addEventListener("click", () => {assembleGallery(item.id);});
+            item.addEventListener('click', () => {
+                assembleGallery(item.id);
+            });
         }
-    }    
-    
-   
-</script>
+    }
 
+    function CurrentGalleryItem(
+        keyToCheck: string,
+        ifTrue: string,
+        ifFalse: string,
+    ) {
+        const galleryStored = localStorage.getItem('gallery') ?? null;
+        if (keyToCheck == galleryStored) return ifTrue;
+        return ifFalse;
+    }
+
+    function UpdateMenuItemActive() {
+        const galleryStored =
+            localStorage.getItem('gallery') ?? fallbackGallery;
+        const activeStyles = [
+            'text-(--color-dark-green)',
+            'dark:text-(--color-light-mint)',
+            'underline',
+            'underline-offset-4',
+        ];
+        console.log('activeStyles', activeStyles);
+        for (const item of menuItems) {
+            if (item.id == galleryStored) {
+                item.classList.add(...activeStyles);
+                item.classList.remove('text-primary');
+            } else {
+                item.classList.remove(...activeStyles);
+                item.classList.add('text-primary');
+            }
+        }
+    }
+</script>
 
 <AppHead title="Home" />
 
@@ -78,10 +163,10 @@
     class="flex h-full flex-1 flex-col gap-4 overflow-y-auto max-w-7xl mx-auto p-5"
 >
     <div
-        class="grid grid-rows-2 gap-2 h-12 md:h-28 py-2 md:py-4 items-center justify-center"
+        class="grid grid-rows-2 gap-2 py-2 md:py-4 items-center justify-center"
     >
         <div class="flex justify-center-safe">
-            <h1 class="text-xl font-serif">Portfolio</h1>
+            <h1 class="text-2xl font-serif">Portfolio</h1>
         </div>
         <div id="gallery-menu" class="flex justify-center-safe">
             <NavigationMenu class="flex h-full items-stretch">
@@ -97,11 +182,6 @@
                             >
                                 {item}
                             </Button>
-                            <!-- {#if url.isCurrentUrl(item.href, url.currentUrl)}
-                            <div
-                                class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-(--color-dark-green) dark:bg-(--color-light-mint)"
-                            ></div>
-                        {/if} -->
                         </NavigationMenuItem>
                     {/each}
                 </NavigationMenuList>
@@ -111,79 +191,7 @@
     <div>
         <section
             id="image-gallery"
-            class="grid grid-cols-2 md:grid-cols-4 gap-2 px-5"
-        >
-            <!-- {#each gallery as image}
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                {#if i == index}
-                    <div class="grid gap-4">
-                {/if}
-                    
-
-                {#if i == index + 4}
-                    </div>
-                {/if} 
-            {/each} -->
-
-            <!-- <div class="grid gap-4">
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-            </div>
-            <div class="grid gap-4">
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-            </div>
-
-            <div class="grid gap-4">
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-            </div>
-            <div class="grid gap-4">
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-                <div>
-                    <img class="h-auto max-w-full rounded-lg" src={image} />
-                </div>
-            </div> -->
-        </section>
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 px-5 items-start"
+        ></section>
     </div>
 </div>
