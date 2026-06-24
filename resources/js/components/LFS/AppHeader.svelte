@@ -66,7 +66,7 @@
     ];
 </script>
 
-<div class="sticky top-0 bg-background">
+<div class="sticky top-0 bg-background z-999">
     <div class="border-b border-sidebar-border/80 ">
         <div
             class="mx-auto flex h-(--header-height) items-between justify-between px-4 md:max-w-7xl"

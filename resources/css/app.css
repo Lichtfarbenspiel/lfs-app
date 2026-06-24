@@ -197,6 +197,11 @@
     .vh-header {
         height: calc(100dvh - var(--header-height));
     }
+
+
+    .img-hover:hover {
+        @apply scale-101 cursor-pointer shadow-md dark:shadow-lg shadow-gray-500 dark:shadow-black/40;
+    }
 }
 
 /* @media (width >=40rem) {

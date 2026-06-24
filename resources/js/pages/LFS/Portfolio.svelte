@@ -13,6 +13,9 @@
     import { useHttp } from '@inertiajs/svelte';
     import Button from '@/components/ui/button/Button.svelte';
     import { currentUrlState } from '@/lib/currentUrl.svelte';
+    import { show } from '@/routes/gallery';
+
+    import { FullImage } from '@/components/LFS/ui/full-image';
 
     const url = currentUrlState();
     const curUrl = new URL(window.location.href);
@@ -32,10 +35,15 @@
     let galleryKey = 'Equine';
     const fallbackGallery = galleryKey;
     let galleryData;
-    let imageGalleryElement;
+    let imageGalleryElement, fullImageElement;
+    let curImgSrc = '',
+        curImgAlt = '',
+        displayImage = 'hidden';
 
     onMount(async () => {
+
         imageGalleryElement = document.getElementById('image-gallery');
+        fullImageElement = document.getElementById('image-display');
 
         galleryMenu = document.getElementById('gallery-menu');
         menuItems = galleryMenu?.getElementsByTagName('button');
@@ -59,11 +67,12 @@
 
     function assembleGallery(key: string) {
         try {
-            const gallery = galleryData[key]; // check for error use fallback
+            const gallery = galleryData[key]; // ToDo: check for error use fallback
             let result = '';
             imageGalleryElement.innerHTML = '';
-
-            const cols = 4; // To do get current col amount maybe?
+            const activeBP = getActiveBreakpoint();
+            console.log("activeBP", activeBP);
+            const cols = (activeBP == 'xs')? 2 : 4; // ToDo: get current col amount maybe?
             let division =
                 gallery.length <= cols
                     ? 0
@@ -76,12 +85,15 @@
             // console.log('start breakpoint', breakpoint);
 
             for (let i = 0; i < gallery.length; i++) {
-                let image = `<div id=${i} class="h-fit"><img class="max-w-full rounded-lg" src=${gallery[i]} /></div>`;
+                let image = `<button id=${i} class="transparent"><img class="max-w-full rounded-lg img-hover" src=${gallery[i]} /></button>`;
                 console.log(`${i} startpoint`, startpoint);
                 console.log(`${i} breakpoint`, breakpoint);
+                console.log(`${i} division`, division);
 
                 if (i == startpoint && i == breakpoint) {
                     result += `<div class="grid gap-4 flex">${image}</div>`;
+                    startpoint = i + 1;
+                    breakpoint = startpoint + division;
                 } else if (i == startpoint) {
                     result += `<div class="grid gap-4 flex">${image}`;
                 } else if (i == breakpoint) {
@@ -100,6 +112,18 @@
             imageGalleryElement.innerHTML = result;
             localStorage.setItem('gallery', key);
             UpdateMenuItemActive();
+
+            const imageBtns =
+                imageGalleryElement?.getElementsByTagName('button');
+            for (const btn of imageBtns) {
+                btn.addEventListener('click', () => {
+                    showImage(gallery[btn.id], 'altText');
+                });
+            }
+
+            fullImageElement.addEventListener('click', (event) => {
+                hideImage();
+            });
 
             // updateURLParam('gallery', key);
         } catch (e) {
@@ -155,6 +179,64 @@
             }
         }
     }
+
+    function showImage(src: string, alt: string) {
+        console.log('supposed to show the enlarged image');
+
+        // open popupcontainer with image
+
+        curImgSrc = src;
+        curImgAlt = alt;
+        displayImage = '';
+    }
+
+    function hideImage() {
+        curImgSrc = '';
+        curImgAlt = '';
+        displayImage = 'hidden';
+    }
+
+    function getActiveBreakpoint() {
+        let style = getComputedStyle(document.documentElement);
+
+        const breakpoints = {
+            sm: convertRemToPixels(style.getPropertyValue('--breakpoint-sm')),
+            md: convertRemToPixels(style.getPropertyValue('--breakpoint-md')),
+            lg: convertRemToPixels(style.getPropertyValue('--breakpoint-lg')),
+        };
+
+        console.log('breakpoints', breakpoints);
+        const width = window.screen.availWidth;
+        console.log("width", width);
+        if (width < breakpoints.sm) 
+            return 'xs';
+        else if (width == breakpoints.sm)
+            return 'sm';
+        else if (width == breakpoints.md)
+            return 'md';
+        else if (width == breakpoints.lg)
+            return 'lg';
+
+
+        // switch (window.screen.availWidth) {
+        //     case breakpoints.sm:
+        //         return 'sm';
+        //     case breakpoints.md:
+        //         return 'md';
+        //     case breakpoints.lg:
+        //         return 'lg';
+        // }
+    }
+
+    function convertRemToPixels(rem) {
+        const regex = /rem/i;
+        rem = rem.replace(regex, '');
+        console.log('rem', rem);
+        return (
+            rem *
+            parseFloat(getComputedStyle(document.documentElement).fontSize)
+        );
+    }
 </script>
 
 <AppHead title="Home" />
@@ -188,10 +270,16 @@
             </NavigationMenu>
         </div>
     </div>
-    <div>
+    <div id="gallery-conatiner">
         <section
             id="image-gallery"
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 px-5 items-start"
+            class="grid grid-cols-2 md:grid-cols-4 gap-4 px-5 items-start"
         ></section>
+        <FullImage
+            src={curImgSrc}
+            alt={curImgAlt}
+            class={displayImage}
+            onclick={hideImage}
+        />
     </div>
 </div>

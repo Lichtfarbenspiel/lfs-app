@@ -1,3 +1,3 @@
 // import { cn } from '@/lib/utils';
 
-export { default as FulllImage } from './FullImage.svelte';
+export { default as FullImage } from './FullImage.svelte';
