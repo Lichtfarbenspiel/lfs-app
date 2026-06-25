@@ -16,6 +16,7 @@
     import { show } from '@/routes/gallery';
 
     import { FullImage } from '@/components/LFS/ui/full-image';
+    import PageTitle from '@/components/LFS/ui/page-title/PageTitle.svelte';
 
     const url = currentUrlState();
     const curUrl = new URL(window.location.href);
@@ -45,7 +46,7 @@
         imageGalleryElement = document.getElementById('image-gallery');
         fullImageElement = document.getElementById('image-display');
 
-        galleryMenu = document.getElementById('gallery-menu');
+        galleryMenu = document.getElementById('title-sub-menu');
         menuItems = galleryMenu?.getElementsByTagName('button');
         console.log(galleryMenu, menuItems);
 
@@ -239,12 +240,13 @@
     }
 </script>
 
-<AppHead title="Home" />
+<AppHead title="Portfolio" />
 
 <div
     class="flex h-full flex-1 flex-col gap-4 overflow-y-auto max-w-7xl mx-auto p-5"
 >
-    <div
+    <PageTitle menuList={galleryKeyList} title="Portfolio" />
+    <!-- <div
         class="grid grid-rows-2 gap-2 py-2 md:py-4 items-center justify-center"
     >
         <div class="flex justify-center-safe">
@@ -269,7 +271,7 @@
                 </NavigationMenuList>
             </NavigationMenu>
         </div>
-    </div>
+    </div> -->
     <div id="gallery-conatiner">
         <section
             id="image-gallery"

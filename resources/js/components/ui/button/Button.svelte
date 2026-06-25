@@ -25,7 +25,7 @@
         default: 'bg-primary text-primary-foreground shadow hover:bg-primary/90',
         secondary:
             'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        ghost: 'hover:text-accent-foreground',
         destructive:
             'bg-destructive text-destructive-foreground shadow hover:bg-destructive/90',
         outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',

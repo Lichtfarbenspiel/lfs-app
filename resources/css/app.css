@@ -179,7 +179,7 @@
     --sidebar-primary-foreground: hsl(0 0% 100%);
     --sidebar-accent: hsl(0 0% 15.9%);
     --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-    --sidebar-border: hsl(0 0% 15.9%);
+    --sidebar-border: hsl(0, 0%, 22%);
     --sidebar-ring: hsl(217.2 91.2% 59.8%);
     --sidebar: hsl(240 5.9% 10%);
 }
@@ -201,6 +201,10 @@
 
     .img-hover:hover {
         @apply scale-101 cursor-pointer shadow-md dark:shadow-lg shadow-gray-500 dark:shadow-black/40;
+    }
+
+    a:focus-visible, button:focus-visible {
+        @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md
     }
 }
 

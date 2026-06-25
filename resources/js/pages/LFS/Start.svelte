@@ -14,7 +14,7 @@
     <div class="w-full vh-header">
         <img src="{image}" alt="some alt text" class="h-full w-full object-cover"/>
     </div>
-    <div class="flex h-full w-full max-w-7xl mx-auto bg-amber-600">
+    <!-- <div class="flex h-full w-full max-w-7xl mx-auto bg-amber-600">
         <div class="row h-52 bg-blue-600"></div>
-    </div>
+    </div> -->
 </div>

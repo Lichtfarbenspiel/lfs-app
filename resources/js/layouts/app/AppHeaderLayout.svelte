@@ -5,6 +5,7 @@
     import AppShell from '@/components/LFS/AppShell.svelte';
     import { Toaster } from '@/components/ui/sonner';
     import type { BreadcrumbItem } from '@/types';
+    import AppFooter from '@/components/LFS/AppFooter.svelte';
 
     let {
         breadcrumbs = [],
@@ -21,4 +22,5 @@
         {@render children?.()}
     </AppContent>
     <Toaster />
+    <AppFooter />
 </AppShell>

@@ -19,10 +19,10 @@
     variant="ghost"
     size="icon"
     class="mr-2 h-9 w-9 self-center cursor-pointer transition-colors {appearance.value === value
-        ? 'bg-white shadow-xs dark:bg-neutral-700 dark:text-neutral-100'
-        : 'text-neutral-500 hover:bg-neutral-200/60 hover:text-black dark:text-neutral-400 dark:hover:bg-neutral-700/60'}" // ToDo: adjust colours
+        ? 'dark:text-neutral-100'
+        : 'text-neutral-500 dark:text-neutral-400'}"
     onclick={() => ToggleTheme()}
     aria-label="Toggle dark theme"
 >
-    <SunMoon class="size-5 opacity-80 group-hover:opacity-100" />
+    <SunMoon class="size-5 opacity-80 group-hover:opacity-100 hover:text-accent-foreground" />
 </Button>
