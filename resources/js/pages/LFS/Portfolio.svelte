@@ -23,7 +23,7 @@
     const activeItemStyles =
         'text-(--color-dark-green) dark:text-(--color-light-mint)';
 
-    const galleryKeyList = ['Equine', 'Wedding'];
+    const galleryKeyList = ['Equine', 'Wedding', 'Nature', 'People', 'Animals'];
 
     const http = useHttp({
         folder: galleryKeyList,

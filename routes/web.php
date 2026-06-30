@@ -6,6 +6,8 @@ use App\Http\Controllers\StorageController;
 Route::inertia('/', 'LFS/Start')->name('home');
 Route::inertia('/portfolio', 'LFS/Portfolio')->name('portfolio');
 Route::inertia('/about', 'LFS/About')->name('about');
+Route::inertia('/imprint', 'LFS/Imprint')->name('imprint');
+
 
 
 Route::get("/images/{filename}", [StorageController::class, "index"])->name("image.show");

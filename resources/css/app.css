@@ -75,7 +75,10 @@
     --color-light-mint: #defff9;
 
 
-    --header-height: calc(var(--spacing) * 16);
+    --header-height: calc(var(--spacing) * 17);
+    --footer-height: calc(var(--spacing) * 14);
+    --hf: calc(var(--header-height) + var(--footer-height));
+
     /* --vh-header: calc(100dvh - var(--header-height)); */
 }
 
@@ -207,9 +210,3 @@
         @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md
     }
 }
-
-/* @media (width >=40rem) {
-    .vh-header {
-        height: 18rem;
-    }
-}*/
