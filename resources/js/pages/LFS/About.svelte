@@ -1,8 +1,16 @@
 <script lang="ts">
+    import StorageController from '@/actions/App/Http/Controllers/StorageController';
     import AppHead from '@/components/AppHead.svelte';
+    import InstagramLogo from '@/components/LFS/InstagramLogo.svelte';
+    import MonnettLogo from '@/components/LFS/MonnettLogo.svelte';
     import { PageTitle } from '@/components/LFS/ui/page-title';
+    import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
+    import { Link } from '@inertiajs/svelte';
+    import MailIcon from 'lucide-svelte/icons/mail';
 
     const title = 'About';
+
+    let src = 'storage' + StorageController.index('POR2.png').url;
 </script>
 
 <AppHead {title} />
@@ -12,13 +20,23 @@
 >
     <PageTitle menuList={null} {title} />
 
-    <div id="page-content" class="grid gap-4 grid-cols-1">
+    <div
+        id="page-content"
+        class="grid gap-5 grid-cols-1 md:grid-cols-2 max-w-4xl px-5"
+    >
         <div
-            class="flex h-auto w-full flex-col text-foreground text-md max-w-4xl px-5 gap-2"
+            class="relative flex h-auto w-auto justify-center items-center p-4"
         >
+            <img
+                {src}
+                alt="alttext"
+                class="w-3/4 h-auto aspect-square rounded-full object-cover"
+            />
+        </div>
+        <div class="flex h-auto w-auto flex-col text-foreground text-md gap-2">
             <p>
-                Ich bin Salome. Ich bin Medieninformatikerin, Hobbyfotografin
-                und Pferdemädchen - immer irgendwo zwischen Natur und Monitor
+                Ich bin Salome. Medieninformatikerin, Hobbyfotografin und
+                Pferdemädchen - immer irgendwo zwischen Natur und Monitor
                 unterwegs.
             </p>
             <p>
@@ -38,11 +56,63 @@
                 ist mein kleines Projekt, um Svelte als Frontend zu testen.
             </p>
         </div>
+    </div>
+    <div
+        class="grid gap-3 grid-cols-1 md:grid-cols-[1fr_2fr_1fr] text-sm sm:text-md max-w-4xl md:mx-auto md:px-5 justify-between content-between px-5 mt-10 md:mt-16"
+    >
         <div
-            class="flex h-auto w-full flex-col text-foreground text-md max-w-4xl px-5 mt-6"
+            class="flex h-full w-auto text-foreground max-w-4xl justify-start items-start md:items-start"
         >
-            <h2 class="text-md font-serif">Contact</h2>
-            <p>lichtfarbenspiel[at]gmail.com</p>
+            <div class="grid grid-rows-2">
+                <div class="flex justify-start items-center gap-2">
+                    <MailIcon class="w-5 h-5" />
+                    <h2 class="font-serif">Contact</h2>
+                </div>
+                <p>lichtfarbenspiel[at]gmail.com</p>
+            </div>
+        </div>
+        <div
+            class="flex h-auto w-full text-foreground max-w-4xl justify-start items-start md:justify-center"
+        >
+            <div class="grid grid-rows-2">
+                <div class="flex justify-start items-center gap-2">
+                    <InstagramLogo size={20.0} />
+                    <h2 class="font-serif">Instagram</h2>
+                </div>
+                <div
+                    class="flex justify-between items-center gap-1 sm:gap-3"
+                >
+                    <div class="flex justify-start">
+                        <Link
+                            class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
+                            href="https://www.instagram.com/lichtfarbenfotografie/"
+                            >lichtfarbenfotografie</Link
+                        >
+                    </div>
+                    <div class="flex justify-start">
+                        <Link
+                            class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
+                            href="https://www.instagram.com/lichtfarbenspiel/"
+                            >lichtfarbenspiel</Link
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="flex h-auto w-full text-foreground max-w-4xl justify-start items-start md:justify-end"
+        >
+            <div class="grid grid-rows-2">
+                <div class="flex justify-start items-center gap-2">
+                    <MonnettLogo size={20.0} />
+                    <h2 class="font-serif">Monnett</h2>
+                </div>
+                <Link
+                    class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-accent hover:text-accent-foreground"
+                    href="https://share.monnett.social/u/lichtfarbenspiel"
+                    >lichtfarbenspiel</Link
+                >
+            </div>
         </div>
     </div>
 </div>

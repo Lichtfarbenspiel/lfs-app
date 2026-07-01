@@ -78,6 +78,7 @@
     --header-height: calc(var(--spacing) * 17);
     --footer-height: calc(var(--spacing) * 14);
     --hf: calc(var(--header-height) + var(--footer-height));
+    
 
     /* --vh-header: calc(100dvh - var(--header-height)); */
 }
