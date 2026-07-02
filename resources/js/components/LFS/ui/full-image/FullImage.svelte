@@ -19,15 +19,26 @@
 <div
     id="image-display"
     class={cn(
-        'modal fade fixed flex top-0 left-0 grid-rows-2 h-dvh w-full overflow-hidden bg-black/50 items-center-safe justify-center',
+        'fixed h-full w-full top-0 left-0 z-1 overflow-hidden bg-black/50 items-center-safe justify-center overscroll-contain',
         className,
     )}
     {...rest}
 >
-    <CloseButton onclick={closeFunction} class="text-white"/>
-    <!-- <div class="w-full h-full bg-black/50"></div> -->
-    <div class="w-3/4 h-fit md:w-fit md:h-3/4 relative bg-background rounded-lg mt-(--header-height)">
-        <!-- adjust for screens - no distorttion-->
-        <img {src} {alt} class="h-full w-auto rounded-lg p-3" />
+    <div
+        class="absolute flex top-0 left-0 grid-rows-2 w-full h-full items-center-safe justify-center p-4"
+    >
+        <CloseButton
+            onclick={closeFunction}
+            class="text-white w-6 h-6"
+            command="close"
+            commandfor="image-display"
+        />
+        <!-- <div class="w-full h-full bg-black/50"></div> -->
+        <div
+            class="w-full h-fit md:w-fit md:h-5/6 relative bg-background rounded-lg mt-(--header-height) overflow-auto"
+        >
+            <!-- adjust for screens - no distorttion-->
+            <img {src} {alt} class="h-full w-auto rounded-lg p-3" />
+        </div>
     </div>
 </div>

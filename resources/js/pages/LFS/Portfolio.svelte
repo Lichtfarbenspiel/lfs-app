@@ -42,7 +42,6 @@
         displayImage = 'hidden';
 
     onMount(async () => {
-
         imageGalleryElement = document.getElementById('image-gallery');
         fullImageElement = document.getElementById('image-display');
 
@@ -72,8 +71,8 @@
             let result = '';
             imageGalleryElement.innerHTML = '';
             const activeBP = getActiveBreakpoint();
-            console.log("activeBP", activeBP);
-            const cols = (activeBP == 'xs')? 2 : 4; // ToDo: get current col amount maybe?
+            console.log('activeBP', activeBP);
+            const cols = activeBP == 'xs' ? 2 : 4; // ToDo: get current col amount maybe? -> not ideal
             let division =
                 gallery.length <= cols
                     ? 0
@@ -81,12 +80,8 @@
             let startpoint = 0;
             let breakpoint = division;
 
-            // console.log('start breakpoint', breakpoint);
-
-            // console.log('start breakpoint', breakpoint);
-
             for (let i = 0; i < gallery.length; i++) {
-                let image = `<button id=${i} class="transparent"><img class="max-w-full rounded-lg img-hover" src=${gallery[i]} /></button>`;
+                let image = `<button id=${i} class="transparent" command="show-modal" commandfor="image-display"><img class="max-w-full rounded-lg img-hover" src=${gallery[i]} /></button>`;
                 console.log(`${i} startpoint`, startpoint);
                 console.log(`${i} breakpoint`, breakpoint);
                 console.log(`${i} division`, division);
@@ -101,10 +96,6 @@
                     result += `${image}</div>`;
                     startpoint = i + 1;
                     breakpoint = startpoint + division;
-
-                    // console.log(`${i} new startpoint`, startpoint);
-
-                    // console.log(`${i} new breakpoint`, breakpoint);
                 } else {
                     result += image;
                 }
@@ -124,6 +115,14 @@
 
             fullImageElement.addEventListener('click', (event) => {
                 hideImage();
+                // fullImageElement.close();
+            });
+
+            window.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    hideImage();
+                    // fullImageElement.close();
+                }
             });
 
             // updateURLParam('gallery', key);
@@ -165,7 +164,7 @@
             localStorage.getItem('gallery') ?? fallbackGallery;
         const activeStyles = [
             'text-(--color-dark-green)',
-            'dark:text-(--color-light-mint)',
+            'dark:text-(--color-mint)',
             'underline',
             'underline-offset-4',
         ];
@@ -182,10 +181,6 @@
     }
 
     function showImage(src: string, alt: string) {
-        console.log('supposed to show the enlarged image');
-
-        // open popupcontainer with image
-
         curImgSrc = src;
         curImgAlt = alt;
         displayImage = '';
@@ -208,16 +203,11 @@
 
         console.log('breakpoints', breakpoints);
         const width = window.screen.availWidth;
-        console.log("width", width);
-        if (width < breakpoints.sm) 
-            return 'xs';
-        else if (width == breakpoints.sm)
-            return 'sm';
-        else if (width == breakpoints.md)
-            return 'md';
-        else if (width == breakpoints.lg)
-            return 'lg';
-
+        console.log('width', width);
+        if (width < breakpoints.sm) return 'xs';
+        else if (width == breakpoints.sm) return 'sm';
+        else if (width == breakpoints.md) return 'md';
+        else if (width == breakpoints.lg) return 'lg';
 
         // switch (window.screen.availWidth) {
         //     case breakpoints.sm:
@@ -243,39 +233,13 @@
 <AppHead title="Portfolio" />
 
 <div
-    class="flex h-full flex-1 flex-col gap-4 overflow-y-auto max-w-7xl mx-auto p-5"
+    class="flex h-full flex-1 flex-col gap-4 overflow-y-auto w-fullmax-w-7xl mx-auto p-5"
 >
     <PageTitle menuList={galleryKeyList} title="Portfolio" />
-    <!-- <div
-        class="grid grid-rows-2 gap-2 py-2 md:py-4 items-center justify-center"
-    >
-        <div class="flex justify-center-safe">
-            <h1 class="text-2xl font-serif">Portfolio</h1>
-        </div>
-        <div id="gallery-menu" class="flex justify-center-safe">
-            <NavigationMenu class="flex h-full items-stretch">
-                <NavigationMenuList class="flex h-full items-stretch space-x-2">
-                    {#each galleryKeyList as item}
-                        <NavigationMenuItem
-                            class="relative flex h-full items-center"
-                        >
-                            <Button
-                                id={item}
-                                variant="link"
-                                class="{navigationMenuTriggerStyle()} h-9 cursor-pointer px-4"
-                            >
-                                {item}
-                            </Button>
-                        </NavigationMenuItem>
-                    {/each}
-                </NavigationMenuList>
-            </NavigationMenu>
-        </div>
-    </div> -->
-    <div id="gallery-conatiner">
+    <div id="gallery-conatiner" class="flex w-full">
         <section
             id="image-gallery"
-            class="grid grid-cols-2 md:grid-cols-4 gap-4 px-5 items-start"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-5 items-start"
         ></section>
         <FullImage
             src={curImgSrc}

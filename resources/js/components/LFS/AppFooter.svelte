@@ -3,7 +3,7 @@
     import { navigationMenuTriggerStyle } from './ui/navigation-menu';
 </script>
 
-<div class="relative bottom-0 bg-background h-(--footer-height)">
+<footer class="relative bottom-0 bg-background h-(--footer-height)">
     <div
         class="border-t border-sidebar-border/80 py-3 justify-center content-center grid gap-2"
     >
@@ -29,4 +29,4 @@
             </div>
         </div>
     </div>
-</div>
+</footer>

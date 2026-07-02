@@ -44,7 +44,7 @@
     const url = currentUrlState();
 
     const activeItemStyles =
-        'text-(--color-dark-green) dark:text-(--color-light-mint)';
+        'text-(--color-dark-green) dark:text-(--color-mint)';
 
     const mainNavItems: NavItem[] = [
         {
@@ -151,7 +151,7 @@
                                 </Link>
                                 {#if url.isCurrentUrl(item.href, url.currentUrl)}
                                     <div
-                                        class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-(--color-dark-green) dark:bg-(--color-light-mint)"
+                                        class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-(--color-dark-green) dark:bg-(--color-mint)"
                                     ></div>
                                 {/if}
                             </NavigationMenuItem>

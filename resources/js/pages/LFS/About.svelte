@@ -79,9 +79,7 @@
                     <InstagramLogo size={20.0} />
                     <h2 class="font-serif">Instagram</h2>
                 </div>
-                <div
-                    class="flex justify-between items-center gap-1 sm:gap-3"
-                >
+                <div class="flex justify-between items-center gap-1 sm:gap-3">
                     <div class="flex justify-start">
                         <Link
                             class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
@@ -108,7 +106,7 @@
                     <h2 class="font-serif">Monnett</h2>
                 </div>
                 <Link
-                    class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-accent hover:text-accent-foreground"
+                    class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
                     href="https://share.monnett.social/u/lichtfarbenspiel"
                     >lichtfarbenspiel</Link
                 >
