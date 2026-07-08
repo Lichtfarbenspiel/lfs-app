@@ -36,7 +36,7 @@
         <!-- <div class="w-full h-full bg-black/50"></div> -->
         <div
             class="w-full h-fit md:w-fit md:h-5/6 relative bg-background rounded-lg mt-(--header-height) overflow-auto"
-        >
+        > <!-- ToDo: adjust sizing dynamically -->
             <!-- adjust for screens - no distorttion-->
             <img {src} {alt} class="h-full w-auto rounded-lg p-3" />
         </div>
