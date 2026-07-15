@@ -13,34 +13,6 @@
     //     getContent();
     // });
 
-    // function getContent() {
-    //     content = document.querySelector('#carousel-content');
-    //     if (content) {
-    //         content_scroll_width = content.scrollWidth;
-    //         content_scoll_left = content.scrollLeft;
-    //         console.log('content_scroll_width', content_scroll_width);
-    //     }
-    // }
-
-    // const moveLeft = () => {
-    //     if (!content) getContent();
-
-    //     if (content_scoll_left >= content_scroll_width) {
-    //         content_scoll_left = content_scroll_width;
-    //     }
-    //     content.scrollLeft = content_scoll_left;
-    //     console.log('Left scroll', content);
-    // };
-
-    // const moveRight = () => {
-    //     if (!content) getContent();
-    //     content_scoll_left -= 100;
-    //     if (content_scoll_left <= 0) {
-    //         content_scoll_left = 0;
-    //     }
-    //     content.scrollLeft = content_scoll_left;
-    //     console.log('Right scroll', content.scrollLeft);
-    // };
 
     let content = document.querySelector('#carousel-content') ?? null;
 
@@ -64,12 +36,16 @@
         }
         console.log('Right scroll clicked');
     };
+
 </script>
 
-<div id="carousel-container" class="flex h-full justify-center items-center">
+<div
+    id="carousel-container"
+    class="flex h-full w-full justify-center items-center"
+>
     <div
         id="carousel-content"
-        class="relative flex h-full w-full snap-x overflow-x-auto scroll-smooth snap-mandatory no-scrollbar" // snap didnt work
+        class="relative flex h-full w-fit snap-x overflow-x-auto scroll-smooth snap-mandatory no-scrollbar" // snap didnt work
     >
         {#each images as image, index}
             <div class="w-auto h-full shrink-0 snap-center">

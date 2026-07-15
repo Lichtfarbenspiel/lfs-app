@@ -19,7 +19,7 @@
 <div
     id="image-display"
     class={cn(
-        'fixed h-full w-full top-0 left-0 z-1 overflow-hidden bg-black/50 items-center-safe justify-center overscroll-contain',
+        'fixed h-full w-full top-0 left-0 z-1 overflow-hidden bg-black/75 items-center-safe justify-center overscroll-contain',
         className,
     )}
     {...rest}
@@ -35,10 +35,9 @@
         />
         <!-- <div class="w-full h-full bg-black/50"></div> -->
         <div
-            class="w-full h-fit md:w-fit md:h-5/6 relative bg-background rounded-lg mt-(--header-height) overflow-auto"
-        > <!-- ToDo: adjust sizing dynamically -->
-            <!-- adjust for screens - no distorttion-->
-            <img {src} {alt} class="h-full w-auto rounded-lg p-3" />
+            class="relative flex full-image-container mt-(--header-height) overflow-auto"
+        >
+            <img {src} {alt} class="flex shrink w-auto h-auto rounded-md object-contain" /> <!-- still too wide for portrait images - rounded corners not visible-->
         </div>
     </div>
 </div>

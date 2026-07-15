@@ -78,8 +78,8 @@
 
 
     --header-height: calc(var(--spacing) * 17);
-    --footer-height: calc(var(--spacing) * 14);
-    --hf: calc(var(--header-height) + var(--footer-height));
+    --footer-height: calc(var(--spacing) * 19);
+    --header-footer: calc(var(--header-height) + var(--footer-height));
 
 
     /* --vh-header: calc(100dvh - var(--header-height)); */
@@ -210,13 +210,25 @@
 
 
     .vh-header {
-        height: calc(100dvh - var(--header-height));
+        height: calc(100dvh - var(--header-footer));
     }
 
 
     .img-hover:hover {
         @apply scale-101 cursor-pointer shadow-md dark:shadow-lg shadow-gray-500 dark:shadow-black/40;
     }
+
+    .full-image-container {
+        width: auto;
+        height: auto;
+        max-width: 90dvw;
+        max-height: calc(100dvh - var(--spacing) * 25);
+    }
+
+    /*  .full-image-container img {
+         @apply  border-background border-8 border-solid 
+    }
+    */
 
     a:focus-visible,
     button:focus-visible {
