@@ -33,16 +33,16 @@
     let galleryMenu;
     let menuItems;
 
-    let galleryKey = 'Equine';
-    const fallbackGallery = galleryKey;
+    const fallbackGallery = 'Equine';
     let galleryData;
     let imageGalleryElement, fullImageElement;
     let curImgSrc = '',
         curImgAlt = '',
         displayImage = 'hidden';
+    var activeBP;
 
     onMount(async () => {
-        imageGalleryElement = document.getElementById('image-gallery');
+        imageGalleryElement = document.getElementById('image-gallery'); // lazy load and caching
         fullImageElement = document.getElementById('image-display');
 
         galleryMenu = document.getElementById('title-sub-menu');
@@ -52,11 +52,7 @@
         http.get(route, {
             onSuccess: (response) => {
                 galleryData = response;
-                // let params = new URLSearchParams(document.location.search);
-                let galleryStored = localStorage.getItem('gallery') ?? null; //params? params.get("gallery") : null;
-                if (galleryStored) galleryKey = galleryStored;
-                assembleGallery(galleryKey); //ToDo: error handling
-                // console.log('http response', response);
+                assembleGallery(getStoredGalleryKey()); //ToDo: error handling
                 finaliseGalleryMenu();
             },
             onError: (errors) => {
@@ -70,9 +66,9 @@
             const gallery = galleryData[key]; // ToDo: check for error use fallback
             let result = '';
             imageGalleryElement.innerHTML = '';
-            const activeBP = getActiveBreakpoint();
+            activeBP = getActiveBreakpoint();
             console.log('activeBP', activeBP);
-            const cols = activeBP == 'xs' ? 2 : 4; // ToDo: get current col amount maybe? -> not ideal
+            const cols = activeBP == 'xs' ? 1 : activeBP == 'sm' ? 2 : 4;
             let division =
                 gallery.length <= cols
                     ? 0
@@ -125,6 +121,11 @@
                 }
             });
 
+            window.addEventListener('resize', (event) => {
+                if (activeBP != getActiveBreakpoint())
+                    assembleGallery(getStoredGalleryKey());
+            });
+
             // updateURLParam('gallery', key);
         } catch (e) {
             console.error('Could not assemble gallery: ' + e);
@@ -154,6 +155,13 @@
         ifTrue: string,
         ifFalse: string,
     ) {
+    }
+
+    function convertRemToPixels(rem) {
+        const regex = /rem/i;
+        rem = rem.replace(regex, '');
+        console.log('rem', rem);
+        retu
         const galleryStored = localStorage.getItem('gallery') ?? null;
         if (keyToCheck == galleryStored) return ifTrue;
         return ifFalse;
@@ -192,6 +200,12 @@
         displayImage = 'hidden';
     }
 
+    function getStoredGalleryKey(): string {
+        // let params = new URLSearchParams(document.location.search);
+        let galleryStored = localStorage.getItem('gallery') ?? null; //params? params.get("gallery") : null;
+        return galleryStored ?? fallbackGallery;
+    }
+
     function getActiveBreakpoint() {
         let style = getComputedStyle(document.documentElement);
 
@@ -205,18 +219,11 @@
         const width = window.screen.availWidth;
         console.log('width', width);
         if (width < breakpoints.sm) return 'xs';
-        else if (width == breakpoints.sm) return 'sm';
-        else if (width == breakpoints.md) return 'md';
-        else if (width == breakpoints.lg) return 'lg';
-
-        // switch (window.screen.availWidth) {
-        //     case breakpoints.sm:
-        //         return 'sm';
-        //     case breakpoints.md:
-        //         return 'md';
-        //     case breakpoints.lg:
-        //         return 'lg';
-        // }
+        else if (width >= breakpoints.sm && width <= breakpoints.md)
+            return 'sm';
+        else if (width >= breakpoints.md && width <= breakpoints.lg)
+            return 'md';
+        else if (width >= breakpoints.lg) return 'lg';
     }
 
     function convertRemToPixels(rem) {
@@ -239,7 +246,7 @@
     <div id="gallery-conatiner" class="flex w-full">
         <section
             id="image-gallery"
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-5 items-start"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-5 items-start auto-rows-[minmax(100px,auto)]"
         ></section>
         <FullImage
             src={curImgSrc}
