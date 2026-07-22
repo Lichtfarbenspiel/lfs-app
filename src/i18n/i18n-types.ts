@@ -45,6 +45,38 @@ type RootTranslation = {
 			title: string
 		}
 	}
+	pageTitle: {
+		imprint: {
+			/**
+			 * I​m​p​r​i​n​t
+			 */
+			title: string
+		}
+		home: {
+			/**
+			 * H​o​m​e
+			 */
+			title: string
+		}
+		portfolio: {
+			/**
+			 * P​o​r​t​f​o​l​i​o
+			 */
+			title: string
+		}
+		blog: {
+			/**
+			 * B​l​o​g
+			 */
+			title: string
+		}
+		about: {
+			/**
+			 * A​b​o​u​t
+			 */
+			title: string
+		}
+	}
 	language: {
 		/**
 		 * D​E
@@ -152,6 +184,38 @@ export type TranslationFunctions = {
 	 */
 	HI: (arg: { name: string }) => LocalizedString
 	menu: {
+		home: {
+			/**
+			 * Home
+			 */
+			title: () => LocalizedString
+		}
+		portfolio: {
+			/**
+			 * Portfolio
+			 */
+			title: () => LocalizedString
+		}
+		blog: {
+			/**
+			 * Blog
+			 */
+			title: () => LocalizedString
+		}
+		about: {
+			/**
+			 * About
+			 */
+			title: () => LocalizedString
+		}
+	}
+	pageTitle: {
+		imprint: {
+			/**
+			 * Imprint
+			 */
+			title: () => LocalizedString
+		}
 		home: {
 			/**
 			 * Home

@@ -18,7 +18,7 @@
     <div
         class="relative flex w-full justify-center-safe border-b border-sidebar-border/80 px-10"
     >
-        <h1 class="text-2xl font-serif">{$LL.menu[titleKey].title()}</h1>
+        <h1 class="text-2xl font-serif">{$LL.pageTitle[titleKey].title()}</h1>
     </div>
 
     {#if menuList != null}

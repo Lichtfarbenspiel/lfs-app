@@ -14,6 +14,14 @@ const en: BaseTranslation = {
 		about: { title: 'About' },
 	},
 
+	pageTitle: {
+		imprint: { title: 'Imprint' },
+		home: { title: 'Home' },
+		portfolio: { title: 'Portfolio' },
+		blog: { title: 'Blog' },
+		about: { title: 'About' },
+	},
+
 	language: {
 		de: 'DE',
 		en: 'EN'

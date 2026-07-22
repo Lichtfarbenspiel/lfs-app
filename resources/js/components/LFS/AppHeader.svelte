@@ -33,7 +33,6 @@
     import type { BreadcrumbItem, NavItem } from '@/types';
     import ToggleTheme from './ui/toggle-theme/ToggleTheme.svelte';
     import { LL } from '../../../../src/i18n/i18n-svelte';
-    import type { Translation } from '../../../../src/i18n/i18n-types';
     import { ToggleLanguage } from '@/components/LFS/ui/toggle-language';
 
     let {

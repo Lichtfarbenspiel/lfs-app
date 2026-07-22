@@ -34,8 +34,8 @@
             />
         </div>
         <div
-            class="flex h-auto w-auto flex-col text-foreground text-md gap-2"
-        >{$LL.about_description()}</div>
+            class="flex h-auto w-auto flex-col text-foreground text-md gap-4"
+        >{@html $LL.about_description()}</div>
     </div>
     <div
         class="grid gap-3 grid-cols-1 md:grid-cols-[1fr_2fr_1fr] text-sm sm:text-md max-w-4xl md:mx-auto md:px-5 justify-between content-between px-5 mt-10 md:mt-16"
