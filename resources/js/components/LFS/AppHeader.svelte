@@ -32,7 +32,9 @@
     import { dashboard } from '@/routes';
     import type { BreadcrumbItem, NavItem } from '@/types';
     import ToggleTheme from './ui/toggle-theme/ToggleTheme.svelte';
-    import AppearanceTabs from '../AppearanceTabs.svelte';
+    import { LL } from '../../../../src/i18n/i18n-svelte';
+    import type { Translation } from '../../../../src/i18n/i18n-types';
+    import { ToggleLanguage } from '@/components/LFS/ui/toggle-language';
 
     let {
         breadcrumbs = [],
@@ -40,7 +42,6 @@
         breadcrumbs?: BreadcrumbItem[];
     } = $props();
 
-    const auth = $derived(page.props.auth);
     const url = currentUrlState();
 
     const activeItemStyles =
@@ -67,7 +68,7 @@
 </script>
 
 <div class="sticky top-0 bg-background z-999">
-    <div class="border-b border-sidebar-border/80 ">
+    <div class="border-b border-sidebar-border/80">
         <div
             class="mx-auto flex h-(--header-height) items-between justify-between px-4 md:max-w-7xl"
         >
@@ -91,7 +92,7 @@
                             </Button>
                         {/snippet}
                     </SheetTrigger>
-                    <SheetContent side="right" class="w-[300px] p-6 right-0">
+                    <SheetContent side="right" class="w-75 p-6 right-0">
                         <SheetTitle class="sr-only">Navigation menu</SheetTitle>
                         <SheetHeader class="flex justify-start text-left">
                             <AppLogoIcon
@@ -103,21 +104,27 @@
                         >
                             <nav class="-mx-3 space-y-1">
                                 {#each mainNavItems as item (toUrl(item.href))}
+                                    <!-- {@const menu: keyof Translation['menu'] = item.title.toLocaleLowerCase()} -->
+                                    {@const key =
+                                        item.title.toLocaleLowerCase()}
+
                                     <Link
                                         href={toUrl(item.href)}
                                         class="flex items-center gap-x-3 rounded-lg px-3 py-2 text-sm font-medium font-serif hover:text-accent-foreground {url.whenCurrentUrl(
                                             item.href,
                                             url.currentUrl,
-                                            activeItemStyles + ' underline underline-offset-4',
+                                            activeItemStyles +
+                                                ' underline underline-offset-4',
                                             '',
                                         ) ?? ''}"
                                     >
                                         {#if item.icon}
                                             <item.icon class="h-5 w-5" />
                                         {/if}
-                                        {item.title}
+                                        {$LL.menu[key].title()}
                                     </Link>
                                 {/each}
+                                <ToggleLanguage />
                                 <ToggleTheme />
                             </nav>
                         </div>
@@ -132,6 +139,8 @@
                         class="flex h-full items-stretch space-x-2"
                     >
                         {#each mainNavItems as item (toUrl(item.href))}
+                            {@const key = item.title.toLocaleLowerCase()}
+                            <!-- {@const menu: keyof Translation['menu'] = key} -->
                             <NavigationMenuItem
                                 class="relative flex h-full items-center"
                             >
@@ -147,7 +156,7 @@
                                     {#if item.icon}
                                         <item.icon class="mr-2 h-4 w-4" />
                                     {/if}
-                                    {item.title}
+                                    {$LL.menu[key].title()}
                                 </Link>
                                 {#if url.isCurrentUrl(item.href, url.currentUrl)}
                                     <div
@@ -156,7 +165,7 @@
                                 {/if}
                             </NavigationMenuItem>
                         {/each}
-
+                        <ToggleLanguage />
                         <ToggleTheme />
                     </NavigationMenuList>
                 </NavigationMenu>

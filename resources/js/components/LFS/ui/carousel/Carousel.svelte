@@ -1,18 +1,8 @@
 <script lang="ts">
     import { Button } from '@/components/ui/button';
     import { ChevronLeft, ChevronRight } from 'lucide-svelte';
-    import { onMount } from 'svelte';
-
+    
     let { images } = $props();
-    // let content;
-    let content_scroll_width;
-    let content_scoll_left;
-
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     console.log('dom loaded');
-    //     getContent();
-    // });
-
 
     let content = document.querySelector('#carousel-content') ?? null;
 

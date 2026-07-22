@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Link } from '@inertiajs/svelte';
     import { navigationMenuTriggerStyle } from './ui/navigation-menu';
+    import { LL } from '../../../../src/i18n/i18n-svelte';
 </script>
 
 <footer class="relative bottom-0 bg-background h-(--footer-height)">
@@ -12,20 +13,22 @@
         >
             <div class="relative flex h-full items-center">
                 <Link class={navigationMenuTriggerStyle()} href="/about"
-                    >contact</Link
+                    >{$LL.contact().toLocaleLowerCase()}</Link
                 >
             </div>
             <div class="relative flex h-full items-center">
                 <Link class={navigationMenuTriggerStyle()} href="/imprint"
-                    >imprint</Link
+                    >{$LL.imprint().toLocaleLowerCase()}</Link
                 >
             </div>
         </div>
         <div
             class="group flex-1 list-none justify-center gap-1 flex h-full items-stretch space-x-2"
         >
-            <div class="relative flex h-full items-center text-[0.625rem] text-foreground/80">
-                <p>© 2026 Lichtfarbenspiel</p>
+            <div
+                class="relative flex h-full items-center text-[0.625rem] text-foreground/80"
+            >
+                <p>{$LL.copyright()}</p>
             </div>
         </div>
     </div>

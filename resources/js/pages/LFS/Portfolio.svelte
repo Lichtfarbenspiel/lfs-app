@@ -17,6 +17,7 @@
 
     import { FullImage } from '@/components/LFS/ui/full-image';
     import PageTitle from '@/components/LFS/ui/page-title/PageTitle.svelte';
+    import { LL } from '../../../../src/i18n/i18n-svelte';
 
     const url = currentUrlState();
     const curUrl = new URL(window.location.href);
@@ -40,6 +41,7 @@
         curImgAlt = '',
         displayImage = 'hidden';
     var activeBP;
+    const title = 'portfolio';
 
     onMount(async () => {
         imageGalleryElement = document.getElementById('image-gallery'); // lazy load and caching
@@ -155,13 +157,6 @@
         ifTrue: string,
         ifFalse: string,
     ) {
-    }
-
-    function convertRemToPixels(rem) {
-        const regex = /rem/i;
-        rem = rem.replace(regex, '');
-        console.log('rem', rem);
-        retu
         const galleryStored = localStorage.getItem('gallery') ?? null;
         if (keyToCheck == galleryStored) return ifTrue;
         return ifFalse;
@@ -237,12 +232,12 @@
     }
 </script>
 
-<AppHead title="Portfolio" />
+<AppHead title={title} />
 
 <div
     class="flex h-full flex-1 flex-col gap-4 overflow-y-auto w-fullmax-w-7xl mx-auto p-5"
 >
-    <PageTitle menuList={galleryKeyList} title="Portfolio" />
+    <PageTitle menuList={galleryKeyList} titleKey={title} />
     <div id="gallery-conatiner" class="flex w-full">
         <section
             id="image-gallery"
