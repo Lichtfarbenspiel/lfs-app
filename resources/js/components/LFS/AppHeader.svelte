@@ -29,11 +29,11 @@
     } from '@/components/ui/tooltip';
     import { currentUrlState } from '@/lib/currentUrl.svelte';
     import { toUrl } from '@/lib/utils';
-    import { dashboard } from '@/routes';
     import type { BreadcrumbItem, NavItem } from '@/types';
     import ToggleTheme from './ui/toggle-theme/ToggleTheme.svelte';
     import { LL } from '../../../../src/i18n/i18n-svelte';
     import { ToggleLanguage } from '@/components/LFS/ui/toggle-language';
+
 
     let {
         breadcrumbs = [],
@@ -71,7 +71,7 @@
         <div
             class="mx-auto flex h-(--header-height) items-between justify-between px-4 md:max-w-7xl"
         >
-            <Link href={toUrl(dashboard())} class="flex items-center gap-x-2">
+            <Link href='/' class="flex items-center gap-x-2">
                 <AppLogo />
             </Link>
 
