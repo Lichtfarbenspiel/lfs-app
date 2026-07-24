@@ -57,7 +57,7 @@
         },
         {
             title: 'Blog',
-            href: '/blog',
+            href: 'https://blog.lichtfarbenspiel.de',
         },
         {
             title: 'About',

@@ -17,9 +17,17 @@
                 >
             </div>
             <div class="relative flex h-full items-center">
-                <Link class={navigationMenuTriggerStyle()} href="/imprint" // active style??
-                    >{$LL.imprint().toLocaleLowerCase()}</Link
-                >
+                <Link
+                    class={navigationMenuTriggerStyle()}
+                    href="/imprint">{$LL.imprint().toLocaleLowerCase()}</Link  
+                > 
+                <!-- active style?? -->
+            </div>
+            <div class="relative flex h-full items-center">
+                <Link
+                    class={navigationMenuTriggerStyle()}
+                    href="/privacy">{$LL.privacy().toLocaleLowerCase()}</Link 
+                > <!-- // active style?? -->
             </div>
         </div>
         <div
