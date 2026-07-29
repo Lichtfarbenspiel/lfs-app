@@ -21,7 +21,7 @@ host('production')
     ->set('hostname', 'home13500868.1and1-data.host')
     ->set('branch', 'release') // the git branch to deploy
     ->set('remote_user', 'acc890505466')
-    ->set('deploy_path', '/lichtfarbenspiel');
+    ->set('deploy_path', '~/lichtfarbenspiel');
 
 
 
