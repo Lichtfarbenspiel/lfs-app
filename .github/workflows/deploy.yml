@@ -48,12 +48,12 @@ jobs:
 
     - name: Run Remote/Artisan Commands
       uses: appleboy/ssh-action@v0.1.6
+      env:
+        REMOTE_PHP_BIN: ${{ secrets.REMOTE_PHP_BIN }}
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        env:
-        REMOTE_PHP_BIN: ${{ secrets.REMOTE_PHP_BIN }}
         script: |
           set -euo pipefail
           echo "--- SSH remote diagnostics ---"
@@ -77,6 +77,17 @@ jobs:
               "$PHP_BIN" -v || true
             else
               echo "REMOTE_PHP_BIN exists but SAPI=${PHP_SAPI:-unknown} — not CLI"
+            fi
+          fi
+
+          if [ -z "$PHP_BIN" ] && [ -x "/usr/bin/php8.4-cli" ]; then
+            PHP_SAPI=$("/usr/bin/php8.4-cli" -r 'echo PHP_SAPI;' 2>/dev/null || true)
+            if [ "$PHP_SAPI" = "cli" ]; then
+              PHP_BIN="/usr/bin/php8.4-cli"
+              echo "Using fallback PHP CLI: $PHP_BIN"
+              "$PHP_BIN" -v || true
+            else
+              echo "/usr/bin/php8.4-cli exists but SAPI=${PHP_SAPI:-unknown} — not CLI"
             fi
           fi
 
