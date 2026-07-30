@@ -52,7 +52,6 @@ jobs:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
         script: |
           cd ${{ secrets.DEPLOY_SERVER_DIR }}
           php artisan migrate --force
