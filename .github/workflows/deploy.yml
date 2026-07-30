@@ -53,6 +53,49 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
+          set -euo pipefail
+          echo "--- SSH remote diagnostics ---"
+          echo "User: $(whoami)"
+          echo "Home: $HOME"
+          echo "Starting directory: $(pwd)"
           cd ${{ secrets.DEPLOY_SERVER_DIR }}
-          php artisan migrate --force
-          php artisan optimize
+          echo "Deploy dir: $(pwd)"
+          ls -la || true
+
+          echo "Checking PHP availability and SAPI"
+          if command -v php >/dev/null 2>&1; then
+            PHP_BIN=$(command -v php)
+            echo "php: $PHP_BIN"
+            "$PHP_BIN" -v || true
+            "$PHP_BIN" -r 'echo PHP_SAPI . "\n";' || true
+          else
+            echo "php not found in PATH"
+            PHP_BIN=""
+          fi
+
+          echo "Ensure vendor/autoload.php exists or run composer on remote"
+          if [ ! -f vendor/autoload.php ]; then
+            echo "vendor not present"
+            if command -v composer >/dev/null 2>&1; then
+              echo "Running composer install on remote (no-dev, optimize)"
+              composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist || true
+            else
+              echo "composer not found on remote. Either deploy vendor/ or install composer."
+            fi
+          else
+            echo "vendor present"
+          fi
+
+          if [ ! -f artisan ]; then
+            echo "artisan not found in $PWD" >&2
+            exit 1
+          fi
+
+          if [ -n "$PHP_BIN" ]; then
+            echo "Running artisan migrate and optimize using $PHP_BIN"
+            "$PHP_BIN" artisan migrate --force
+            "$PHP_BIN" artisan optimize
+          else
+            echo "No php CLI binary available; aborting artisan commands" >&2
+            exit 1
+          fi
