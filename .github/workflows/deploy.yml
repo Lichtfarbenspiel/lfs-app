@@ -1,43 +1,59 @@
 name: deploy Laravel App
 
-env:
-  # Use the same ssh-agent socket value across all jobs
-  # Useful when a GH action is using SSH behind-the-scenes
-  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+# env:
+#   # Use the same ssh-agent socket value across all jobs
+#   # Useful when a GH action is using SSH behind-the-scenes
+#   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 
 on:
   push:
     branches: 
       - release
 
-jobs: 
+jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v3
 
-    - name: Setup SSH passphrase
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.4
+
+    - name: Install Composer Dependencies
+      run: composer install --optimize-autoloader --no-dev --no-progress --no-interaction --prefer-dist
+
+    - name: Install Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install NPM Dependencies
+      run: npm install
+
+    - name: Build NPM Assets
+      run: npm run build
+
+    - name: Synchronize Files To Server
+      uses: easingthemes/ssh-deploy@v2.1.5
       env:
-        SSH_PASSPHRASE: ${{secrets.SSH_PASSPHRASE}}
-        SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-      run: |
-        ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-        echo 'echo $SSH_PASSPHRASE' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
-        echo "$SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SOURCE: "."
+        REMOTE_HOST: ${{ secrets.VPS_HOST }}
+        REMOTE_USER: ${{ secrets.VPS_USER }}
+        TARGET: ${{ secrets.DEPLOY_SERVER_DIR }}
 
-    - name: Deploy to server
-      run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
-          cd ${{ secrets.DEPLOY_SERVER_DIR }} &&
-          git reset --hard HEAD && git clean -df &&
-          git pull origin main &&
-          composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader &&
-          npm ci &&
-          npm run build &&
-          php artisan migrate --force &&
-          php artisan optimize:clear &&
-          php artisan config:cache &&
-          php artisan route:cache
-        "
+    - name: Run Remote/Artisan Commands
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        passphrase: ${{ secrets.SSH_PASSPHRASE }}
+        script: |
+          cd ${{ secrets.DEPLOY_SERVER_DIR }}
+          php artisan migrate --force
+          php artisan optimize
