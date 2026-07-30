@@ -62,15 +62,32 @@ jobs:
           echo "Deploy dir: $(pwd)"
           ls -la || true
 
-          echo "Checking PHP availability and SAPI"
-          if command -v php >/dev/null 2>&1; then
-            PHP_BIN=$(command -v php)
-            echo "php: $PHP_BIN"
-            "$PHP_BIN" -v || true
-            "$PHP_BIN" -r 'echo PHP_SAPI . "\n";' || true
-          else
-            echo "php not found in PATH"
-            PHP_BIN=""
+          echo "Locating a usable PHP CLI binary"
+          PHP_BIN=""
+          for candidate in php php-cli php7 php7.4 php8 php8.1 php8.2 /usr/bin/php /usr/bin/php-cli /usr/local/bin/php; do
+            CAND_PATH=$(command -v "$candidate" 2>/dev/null || true)
+            [ -z "$CAND_PATH" ] && [ -x "$candidate" ] && CAND_PATH="$candidate"
+            if [ -n "$CAND_PATH" ]; then
+              PHP_SAPI=$("$CAND_PATH" -r 'echo PHP_SAPI;' 2>/dev/null || true)
+              if [ "$PHP_SAPI" = "cli" ]; then
+                PHP_BIN="$CAND_PATH"
+                echo "Using PHP CLI: $PHP_BIN"
+                "$PHP_BIN" -v || true
+                break
+              else
+                echo "Found $CAND_PATH (SAPI:${PHP_SAPI:-unknown}) — not suitable for artisan"
+              fi
+            fi
+          done
+          if [ -z "$PHP_BIN" ]; then
+            echo "No PHP CLI found in PATH; falling back to /usr/bin/php and attempting anyway"
+            PHP_BIN=$(command -v php || true)
+            if [ -z "$PHP_BIN" ]; then
+              echo "php not found at all" >&2
+            else
+              echo "Using $PHP_BIN (may be php-cgi) — artisan may fail"
+              "$PHP_BIN" -v || true
+            fi
           fi
 
           echo "Ensure vendor/autoload.php exists or run composer on remote"
