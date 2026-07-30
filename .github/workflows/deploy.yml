@@ -52,6 +52,8 @@ jobs:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
+        env:
+        REMOTE_PHP_BIN: ${{ secrets.REMOTE_PHP_BIN }}
         script: |
           set -euo pipefail
           echo "--- SSH remote diagnostics ---"
@@ -62,8 +64,22 @@ jobs:
           echo "Deploy dir: $(pwd)"
           ls -la || true
 
+          echo "REMOTE_PHP_BIN: ${REMOTE_PHP_BIN:-<not set>}"
+ 
           echo "Locating a usable PHP CLI binary"
           PHP_BIN=""
+
+          if [ -n "${REMOTE_PHP_BIN:-}" ] && [ -x "${REMOTE_PHP_BIN}" ]; then
+            PHP_SAPI=$("${REMOTE_PHP_BIN}" -r 'echo PHP_SAPI;' 2>/dev/null || true)
+            if [ "$PHP_SAPI" = "cli" ]; then
+              PHP_BIN="${REMOTE_PHP_BIN}"
+              echo "Using REMOTE_PHP_BIN: $PHP_BIN"
+              "$PHP_BIN" -v || true
+            else
+              echo "REMOTE_PHP_BIN exists but SAPI=${PHP_SAPI:-unknown} — not CLI"
+            fi
+          fi
+
           for candidate in php php-cli php7 php7.4 php8 php8.1 php8.2 /usr/bin/php /usr/bin/php-cli /usr/local/bin/php; do
             CAND_PATH=$(command -v "$candidate" 2>/dev/null || true)
             [ -z "$CAND_PATH" ] && [ -x "$candidate" ] && CAND_PATH="$candidate"
