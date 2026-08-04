@@ -58,6 +58,7 @@
         {
             title: 'Blog',
             href: 'https://blog.lichtfarbenspiel.de',
+            rel: "external",
         },
         {
             title: 'About',
@@ -116,6 +117,7 @@
                                                 ' underline underline-offset-4',
                                             '',
                                         ) ?? ''}"
+                                        item.rel ?? rel={item.rel}
                                     >
                                         {#if item.icon}
                                             <item.icon class="h-5 w-5" />

@@ -63,14 +63,14 @@
                     <div class="flex justify-start">
                         <Link
                             class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
-                            href="https://www.instagram.com/lichtfarbenfotografie/"
+                            href="https://www.instagram.com/lichtfarbenfotografie/" rel="external"
                             >@{$LL.lichtfarbenfotografie()}</Link
                         >
                     </div>
                     <div class="flex justify-start">
                         <Link
                             class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
-                            href="https://www.instagram.com/lichtfarbenspiel/"
+                            href="https://www.instagram.com/lichtfarbenspiel/" rel="external"
                             >@{$LL.lichtfarbenspiel()}</Link
                         >
                     </div>
@@ -87,7 +87,7 @@
                 </div>
                 <Link
                     class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
-                    href="https://share.monnett.social/u/lichtfarbenspiel"
+                    href="https://share.monnett.social/u/lichtfarbenspiel" rel="external"
                     >@{$LL.lichtfarbenspiel()}</Link
                 >
             </div>
