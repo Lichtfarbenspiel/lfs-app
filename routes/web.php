@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Artisan;
 Route::inertia('/', 'LFS/Start')->name('home');
 Route::inertia('/portfolio', 'LFS/Portfolio')->name('portfolio');
 Route::inertia('/about', 'LFS/About')->name('about');
-Route::inertia('/imprint', 'LFS/Imprint')->name('imprint');
-Route::inertia('/privacy', 'LFS/Privacy')->name('privacy');
+// Route::inertia('/imprint', 'LFS/Imprint')->name('imprint');
+// Route::inertia('/privacy', 'LFS/Privacy')->name('privacy');
 
 
 

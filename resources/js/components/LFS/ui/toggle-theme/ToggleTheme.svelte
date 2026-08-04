@@ -24,5 +24,5 @@
     onclick={() => ToggleTheme()}
     aria-label="Toggle dark theme"
 >
-    <SunMoon class="size-5 opacity-80 group-hover:opacity-100 hover:text-accent-foreground" />
+    <SunMoon class="size-5 opacity-80 hover:opacity-100 hover:text-accent-foreground" />
 </Button>
