@@ -16,19 +16,19 @@
                     >{$LL.contact().toLocaleLowerCase()}</Link
                 >
             </div>
-            <div class="relative flex h-full items-center">
+          <!--   <div class="relative flex h-full items-center">
                 <Link
                     class={navigationMenuTriggerStyle()}
                     href="/imprint">{$LL.imprint().toLocaleLowerCase()}</Link  
                 > 
-                <!-- active style?? -->
-            </div>
-            <div class="relative flex h-full items-center">
+                active style?? 
+            </div>-->
+          <!--   <div class="relative flex h-full items-center">
                 <Link
                     class={navigationMenuTriggerStyle()}
                     href="/privacy">{$LL.privacy().toLocaleLowerCase()}</Link 
-                > <!-- // active style?? -->
-            </div>
+                > // active style?? 
+            </div>-->
         </div>
         <div
             class="group flex-1 list-none justify-center gap-1 flex h-full items-stretch space-x-2"

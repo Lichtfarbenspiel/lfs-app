@@ -24,7 +24,7 @@ const de = {
 		portfolio: { title: 'Portfolio' },
 		blog: { title: 'Blog' },
 		about: { title: 'Über mich' },
-		privacy: { title: 'Datenschutz'}
+		privacy: { title: 'Datenschutz' }
 	},
 
 	/*
@@ -49,7 +49,25 @@ const de = {
 	/*
 	| About page
 	*/
-	about_description: '',
+	about_description: `<p>
+                Ich bin Salome. Medieninformatikerin, Hobbyfotografin und
+                Pferdemädchen - immer irgendwo zwischen Natur und Monitor
+                unterwegs.
+            </p>
+            <p>
+                Diese Seite entstand vor über 10 Jahren als Blog, um meine
+                Fotografie zu dokumentieren. Zwischendurch habe ich in London
+                gelebt, Medieniformatik studiert und bin irgendwie in die Welt der
+                Erwachsenen hineingestolpert. Und der Blog? Der ist irgendwo auf
+                dem Weg hier her liegen geblieben. Vielleicht wird es ihn
+                irgendwann mal wieder geben, vielleicht in anderer Form, denn
+                ich liebe es auch zu schreiben.
+            </p>
+            <p>
+                In meinem Portfolio sind einige meiner liebsten Fotografien zu sehen, die ich über die Jahre hinweg aufgenommen habe. Der restliche Spaß findet
+                dahinter statt. Ich bin Full Stack Web Entwicklerin und diese Seite hier
+                ist aktuell mein kleines, persönliches Projekt.
+            </p>`,
 	instagram: 'Instagram',
 	monnett: 'Monnett',
 	contact: 'Kontakt',

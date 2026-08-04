@@ -20,7 +20,7 @@ const en: BaseTranslation = {
 		portfolio: { title: 'Portfolio' },
 		blog: { title: 'Blog' },
 		about: { title: 'About' },
-		privacy: {title: 'Privacy'}
+		privacy: { title: 'Privacy' }
 	},
 
 	language: {
@@ -50,25 +50,18 @@ const en: BaseTranslation = {
 	| About page
 	*/
 	about_description: `<p>
-                Ich bin Salome. Medieninformatikerin, Hobbyfotografin und
-                Pferdemädchen - immer irgendwo zwischen Natur und Monitor
-                unterwegs.
+                I'm Salome. Media computer scientist, amateur photographer and
+                horse girl - always to be found somewhere between nature and a monitor.
             </p>
             <p>
-                Diese Seite entstand vor über 10 Jahren als Blog, um meine
-                Fotografie zu dokumentieren. Zwischendurch habe ich in London
-                gelebt, Medieniformatik studiert und bin in die Welt der
-                Erwachsenen hineingestolpert. Und der Blog? Der ist irgendwo auf
-                dem Weg hier her liegen geblieben. Vielleicht wird es ihn
-                irgendwann mal wieder geben, vielleicht in anderer Form, denn
-                ich liebe es zu schreiben.
+			This page was created more than 10 years ago as a personal blog to document my photography journey.
+            In the meantime I lived in London, studied computer science in media and somehow stumbled right into this world of grown-ups.  
+			And what about the blog? Somewhere along the way it got left behind.
+			Maybe sometime I'll bring it back, perhaps in a different form, 'cause I love to write.
             </p>
             <p>
-                Bis dahin dient diese Seite als mein online Spielplatz. In
-                meinem Portfolio sind meine liebsten Fotografien zu sehen, die
-                Auswahl ist gar nicht so einfach. Der restliche Spaß findet
-                dahinter statt. Ich bin Full Stack Web Entwicklerin und das hier
-                ist mein kleines Projekt, um Svelte als Frontend zu testen.
+			In my portfolio there are some of my favourite photographs I took throughout the years.
+            All the other fun happens beneath it. I'm a full stack web developer and this site is currently my little personal project. 
             </p>`,
 	instagram: 'Instagram',
 	monnett: 'Monnett',

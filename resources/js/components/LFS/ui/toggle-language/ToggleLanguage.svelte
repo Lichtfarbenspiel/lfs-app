@@ -34,7 +34,7 @@
 <Button
     variant="ghost"
     size="icon"
-    class="mr-2 h-9 w-9 self-center cursor-pointer text-sm font-sans font-medium hover:text-accent-foreground"
+    class="mr-2 h-9 w-9 self-center cursor-pointer text-sm font-sans font-medium text-neutral-500 dark:text-neutral-400 hover:text-accent-foreground dark:hover:text-accent-foreground"
     onclick={() => toggleLocale()}
     aria-label="switch language"
 >

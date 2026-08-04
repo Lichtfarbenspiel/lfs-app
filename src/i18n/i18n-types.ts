@@ -143,25 +143,18 @@ type RootTranslation = {
 	copyright: string
 	/**
 	 * <​p​>​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​I​c​h​ ​b​i​n​ ​S​a​l​o​m​e​.​ ​M​e​d​i​e​n​i​n​f​o​r​m​a​t​i​k​e​r​i​n​,​ ​H​o​b​b​y​f​o​t​o​g​r​a​f​i​n​ ​u​n​d​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​P​f​e​r​d​e​m​ä​d​c​h​e​n​ ​-​ ​i​m​m​e​r​ ​i​r​g​e​n​d​w​o​ ​z​w​i​s​c​h​e​n​ ​N​a​t​u​r​ ​u​n​d​ ​M​o​n​i​t​o​r​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​u​n​t​e​r​w​e​g​s​.​
+​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​I​'​m​ ​S​a​l​o​m​e​.​ ​M​e​d​i​a​ ​c​o​m​p​u​t​e​r​ ​s​c​i​e​n​t​i​s​t​,​ ​a​m​a​t​e​u​r​ ​p​h​o​t​o​g​r​a​p​h​e​r​ ​a​n​d​
+​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​h​o​r​s​e​ ​g​i​r​l​ ​-​ ​a​l​w​a​y​s​ ​t​o​ ​b​e​ ​f​o​u​n​d​ ​s​o​m​e​w​h​e​r​e​ ​b​e​t​w​e​e​n​ ​n​a​t​u​r​e​ ​a​n​d​ ​a​ ​m​o​n​i​t​o​r​.​
 ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​<​/​p​>​
 ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​<​p​>​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​D​i​e​s​e​ ​S​e​i​t​e​ ​e​n​t​s​t​a​n​d​ ​v​o​r​ ​ü​b​e​r​ ​1​0​ ​J​a​h​r​e​n​ ​a​l​s​ ​B​l​o​g​,​ ​u​m​ ​m​e​i​n​e​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​F​o​t​o​g​r​a​f​i​e​ ​z​u​ ​d​o​k​u​m​e​n​t​i​e​r​e​n​.​ ​Z​w​i​s​c​h​e​n​d​u​r​c​h​ ​h​a​b​e​ ​i​c​h​ ​i​n​ ​L​o​n​d​o​n​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​g​e​l​e​b​t​,​ ​M​e​d​i​e​n​i​f​o​r​m​a​t​i​k​ ​s​t​u​d​i​e​r​t​ ​u​n​d​ ​b​i​n​ ​i​n​ ​d​i​e​ ​W​e​l​t​ ​d​e​r​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​E​r​w​a​c​h​s​e​n​e​n​ ​h​i​n​e​i​n​g​e​s​t​o​l​p​e​r​t​.​ ​U​n​d​ ​d​e​r​ ​B​l​o​g​?​ ​D​e​r​ ​i​s​t​ ​i​r​g​e​n​d​w​o​ ​a​u​f​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​d​e​m​ ​W​e​g​ ​h​i​e​r​ ​h​e​r​ ​l​i​e​g​e​n​ ​g​e​b​l​i​e​b​e​n​.​ ​V​i​e​l​l​e​i​c​h​t​ ​w​i​r​d​ ​e​s​ ​i​h​n​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​i​r​g​e​n​d​w​a​n​n​ ​m​a​l​ ​w​i​e​d​e​r​ ​g​e​b​e​n​,​ ​v​i​e​l​l​e​i​c​h​t​ ​i​n​ ​a​n​d​e​r​e​r​ ​F​o​r​m​,​ ​d​e​n​n​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​i​c​h​ ​l​i​e​b​e​ ​e​s​ ​z​u​ ​s​c​h​r​e​i​b​e​n​.​
+​	​	​	​T​h​i​s​ ​p​a​g​e​ ​w​a​s​ ​c​r​e​a​t​e​d​ ​m​o​r​e​ ​t​h​a​n​ ​1​0​ ​y​e​a​r​s​ ​a​g​o​ ​a​s​ ​a​ ​p​e​r​s​o​n​a​l​ ​b​l​o​g​ ​t​o​ ​d​o​c​u​m​e​n​t​ ​m​y​ ​p​h​o​t​o​g​r​a​p​h​y​ ​j​o​u​r​n​e​y​.​
+​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​I​n​ ​t​h​e​ ​m​e​a​n​t​i​m​e​ ​I​ ​l​i​v​e​d​ ​i​n​ ​L​o​n​d​o​n​,​ ​s​t​u​d​i​e​d​ ​c​o​m​p​u​t​e​r​ ​s​c​i​e​n​c​e​ ​i​n​ ​m​e​d​i​a​ ​a​n​d​ ​s​o​m​e​h​o​w​ ​s​t​u​m​b​l​e​d​ ​r​i​g​h​t​ ​i​n​t​o​ ​t​h​i​s​ ​w​o​r​l​d​ ​o​f​ ​g​r​o​w​n​-​u​p​s​.​ ​ ​
+​	​	​	​A​n​d​ ​w​h​a​t​ ​a​b​o​u​t​ ​t​h​e​ ​b​l​o​g​?​ ​S​o​m​e​w​h​e​r​e​ ​a​l​o​n​g​ ​t​h​e​ ​w​a​y​ ​i​t​ ​g​o​t​ ​l​e​f​t​ ​b​e​h​i​n​d​.​
+​	​	​	​M​a​y​b​e​ ​s​o​m​e​t​i​m​e​ ​I​'​l​l​ ​b​r​i​n​g​ ​i​t​ ​b​a​c​k​,​ ​p​e​r​h​a​p​s​ ​i​n​ ​a​ ​d​i​f​f​e​r​e​n​t​ ​f​o​r​m​,​ ​'​c​a​u​s​e​ ​I​ ​l​o​v​e​ ​t​o​ ​w​r​i​t​e​.​
 ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​<​/​p​>​
 ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​<​p​>​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​B​i​s​ ​d​a​h​i​n​ ​d​i​e​n​t​ ​d​i​e​s​e​ ​S​e​i​t​e​ ​a​l​s​ ​m​e​i​n​ ​o​n​l​i​n​e​ ​S​p​i​e​l​p​l​a​t​z​.​ ​I​n​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​m​e​i​n​e​m​ ​P​o​r​t​f​o​l​i​o​ ​s​i​n​d​ ​m​e​i​n​e​ ​l​i​e​b​s​t​e​n​ ​F​o​t​o​g​r​a​f​i​e​n​ ​z​u​ ​s​e​h​e​n​,​ ​d​i​e​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​A​u​s​w​a​h​l​ ​i​s​t​ ​g​a​r​ ​n​i​c​h​t​ ​s​o​ ​e​i​n​f​a​c​h​.​ ​D​e​r​ ​r​e​s​t​l​i​c​h​e​ ​S​p​a​ß​ ​f​i​n​d​e​t​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​d​a​h​i​n​t​e​r​ ​s​t​a​t​t​.​ ​I​c​h​ ​b​i​n​ ​F​u​l​l​ ​S​t​a​c​k​ ​W​e​b​ ​E​n​t​w​i​c​k​l​e​r​i​n​ ​u​n​d​ ​d​a​s​ ​h​i​e​r​
-​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​i​s​t​ ​m​e​i​n​ ​k​l​e​i​n​e​s​ ​P​r​o​j​e​k​t​,​ ​u​m​ ​S​v​e​l​t​e​ ​a​l​s​ ​F​r​o​n​t​e​n​d​ ​z​u​ ​t​e​s​t​e​n​.​
+​	​	​	​I​n​ ​m​y​ ​p​o​r​t​f​o​l​i​o​ ​t​h​e​r​e​ ​a​r​e​ ​s​o​m​e​ ​o​f​ ​m​y​ ​f​a​v​o​u​r​i​t​e​ ​p​h​o​t​o​g​r​a​p​h​s​ ​I​ ​t​o​o​k​ ​t​h​r​o​u​g​h​o​u​t​ ​t​h​e​ ​y​e​a​r​s​.​
+​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​A​l​l​ ​t​h​e​ ​o​t​h​e​r​ ​f​u​n​ ​h​a​p​p​e​n​s​ ​b​e​n​e​a​t​h​ ​i​t​.​ ​I​'​m​ ​a​ ​f​u​l​l​ ​s​t​a​c​k​ ​w​e​b​ ​d​e​v​e​l​o​p​e​r​ ​a​n​d​ ​t​h​i​s​ ​s​i​t​e​ ​i​s​ ​c​u​r​r​e​n​t​l​y​ ​m​y​ ​l​i​t​t​l​e​ ​p​e​r​s​o​n​a​l​ ​p​r​o​j​e​c​t​.​ ​
 ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​ ​<​/​p​>
 	 */
 	about_description: string
@@ -345,25 +338,18 @@ export type TranslationFunctions = {
 	copyright: () => LocalizedString
 	/**
 	 * <p>
-                Ich bin Salome. Medieninformatikerin, Hobbyfotografin und
-                Pferdemädchen - immer irgendwo zwischen Natur und Monitor
-                unterwegs.
+                I'm Salome. Media computer scientist, amateur photographer and
+                horse girl - always to be found somewhere between nature and a monitor.
             </p>
             <p>
-                Diese Seite entstand vor über 10 Jahren als Blog, um meine
-                Fotografie zu dokumentieren. Zwischendurch habe ich in London
-                gelebt, Medieniformatik studiert und bin in die Welt der
-                Erwachsenen hineingestolpert. Und der Blog? Der ist irgendwo auf
-                dem Weg hier her liegen geblieben. Vielleicht wird es ihn
-                irgendwann mal wieder geben, vielleicht in anderer Form, denn
-                ich liebe es zu schreiben.
+			This page was created more than 10 years ago as a personal blog to document my photography journey.
+            In the meantime I lived in London, studied computer science in media and somehow stumbled right into this world of grown-ups.  
+			And what about the blog? Somewhere along the way it got left behind.
+			Maybe sometime I'll bring it back, perhaps in a different form, 'cause I love to write.
             </p>
             <p>
-                Bis dahin dient diese Seite als mein online Spielplatz. In
-                meinem Portfolio sind meine liebsten Fotografien zu sehen, die
-                Auswahl ist gar nicht so einfach. Der restliche Spaß findet
-                dahinter statt. Ich bin Full Stack Web Entwicklerin und das hier
-                ist mein kleines Projekt, um Svelte als Frontend zu testen.
+			In my portfolio there are some of my favourite photographs I took throughout the years.
+            All the other fun happens beneath it. I'm a full stack web developer and this site is currently my little personal project. 
             </p>
 	 */
 	about_description: () => LocalizedString
