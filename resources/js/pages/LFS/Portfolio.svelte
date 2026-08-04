@@ -20,7 +20,7 @@
     import { LL } from '../../../../src/i18n/i18n-svelte';
 
     const url = currentUrlState();
-    const curUrl = new URL(window.location.href);
+    // let curUrl: URL | null = null;
     const activeItemStyles =
         'text-(--color-dark-green) dark:text-(--color-light-mint)';
 
@@ -44,6 +44,7 @@
     const title = 'portfolio';
 
     onMount(async () => {
+        // curUrl = new URL(window.location.href);
         imageGalleryElement = document.getElementById('image-gallery'); // lazy load and caching
         fullImageElement = document.getElementById('image-display');
 
@@ -134,13 +135,14 @@
         }
     }
 
-    function updateURLParam(key: string, value: string) {
-        curUrl.searchParams.set(key, value);
-        // for (const key of Object.keys(params)) {
-        //     curUrl.searchParams.set(key, params[key]); // check for validity
-        // }
-        window.history.replaceState(null, '', curUrl);
-    }
+    // function updateURLParam(key: string, value: string) {
+    //     if (!curUrl || typeof window === 'undefined') return;
+    //     curUrl.searchParams.set(key, value);
+    //     // for (const key of Object.keys(params)) {
+    //     //     curUrl.searchParams.set(key, params[key]); // check for validity
+    //     // }
+    //     window.history.replaceState(null, '', curUrl);
+    // }
 
     function finaliseGalleryMenu() {
         if (!menuItems) return;
