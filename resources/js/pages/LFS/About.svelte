@@ -61,17 +61,17 @@
                 </div>
                 <div class="flex justify-between items-center gap-1 sm:gap-3">
                     <div class="flex justify-start">
-                        <Link
+                        <a
                             class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
-                            href="https://www.instagram.com/lichtfarbenfotografie/" rel="external"
-                            >@{$LL.lichtfarbenfotografie()}</Link
+                            href="https://www.instagram.com/lichtfarbenfotografie/" rel="external" target="_blank"
+                            >@{$LL.lichtfarbenfotografie()}</a
                         >
                     </div>
                     <div class="flex justify-start">
-                        <Link
+                        <a
                             class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
-                            href="https://www.instagram.com/lichtfarbenspiel/" rel="external"
-                            >@{$LL.lichtfarbenspiel()}</Link
+                            href="https://www.instagram.com/lichtfarbenspiel/" rel="external" target="_blank"
+                            >@{$LL.lichtfarbenspiel()}</a
                         >
                     </div>
                 </div>
@@ -85,11 +85,10 @@
                     <MonnettLogo size={20.0} />
                     <h2 class="font-serif">{$LL.monnett()}</h2>
                 </div>
-                <Link
+                <a
                     class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
-                    href="https://share.monnett.social/u/lichtfarbenspiel" rel="external"
-                    >@{$LL.lichtfarbenspiel()}</Link
-                >
+                    href="https://share.monnett.social/u/lichtfarbenspiel" rel="external" target="_blank"
+                    >@{$LL.lichtfarbenspiel()}</a>
             </div>
         </div>
     </div>
