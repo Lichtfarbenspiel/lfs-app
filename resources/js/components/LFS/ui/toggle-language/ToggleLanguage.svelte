@@ -6,13 +6,13 @@
     } from '../../../../../../src/i18n/i18n-svelte';
     import type { Locales } from '../../../../../../src/i18n/i18n-types';
     import { loadLocaleAsync } from '../../../../../../src/i18n/i18n-util.async';
-    import {
-        detectLocale,
-    } from '../../../../../../src/i18n/i18n-util';
+    import { detectLocale } from '../../../../../../src/i18n/i18n-util';
     import { onMount } from 'svelte';
     import { localStorageDetector } from 'typesafe-i18n/detectors';
 
     onMount(async () => {
+        if (typeof window === 'undefined') return;
+
         const detectedLocale = detectLocale(localStorageDetector);
         await chooseLocale(detectedLocale);
     });
@@ -27,9 +27,10 @@
         await chooseLocale(nextLocale);
     };
 
-    $: $locale && localStorage.setItem('lang', $locale);
+    $: if (typeof window !== 'undefined' && $locale) {
+        localStorage.setItem('lang', $locale);
+    }
 </script>
-
 
 <Button
     variant="ghost"
