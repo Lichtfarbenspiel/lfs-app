@@ -8,7 +8,7 @@ require 'recipe/laravel.php';
 
 set('repository', 'https://github.com/Lichtfarbenspiel/lfs-app.git');
 
-set('http_user', 'acc890505466');
+set('http_user', 'p453537');
 
 add('shared_files', []);
 add('shared_dirs', []);
@@ -20,8 +20,8 @@ host('production')
     ->set('labels', ['stage' => 'production'])
     ->set('hostname', 'home13500868.1and1-data.host')
     ->set('branch', 'release') // the git branch to deploy
-    ->set('remote_user', 'acc890505466')
-    ->set('deploy_path', '/lichtfarbenspiel');
+    ->set('remote_user', 'p453537')
+    ->set('deploy_path', '~/lichtfarbenspiel');
 
 
 
