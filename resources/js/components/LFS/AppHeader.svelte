@@ -55,11 +55,11 @@
             title: 'Portfolio',
             href: '/portfolio',
         },
-        {
-            title: 'Blog',
-            href: 'https://blog.lichtfarbenspiel.de',
-            rel: "external",
-        },
+        // {
+        //     title: 'Blog',
+        //     href: 'https://blog.lichtfarbenspiel.de',
+        //     rel: "external",
+        // },
         {
             title: 'About',
             href: '/about',
