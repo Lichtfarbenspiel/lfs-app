@@ -9,11 +9,9 @@
     const moveLeft = () => {
         if (!content)
             content = document.querySelector('#carousel-content') ?? null;
-        if (content) {
+        if (content) { 
             content.scrollLeft -= 400;
-            console.log('Left scroll', content);
         }
-        console.log('Left scroll clicked');
     };
 
     const moveRight = () => {
@@ -22,9 +20,7 @@
 
         if (content) {
             content.scrollLeft += 400;
-            console.log('Right scroll', content.scrollLeft);
         }
-        console.log('Right scroll clicked');
     };
 
 </script>
@@ -52,7 +48,7 @@
         <Button
             variant="simple"
             size="icon"
-            class="ml-5 md:ml-8 h-12 w-12 self-center"
+            class="ml-4 md:ml-8 h-12 w-12 self-center"
             onclick={moveLeft}
         >
             <ChevronLeft />
@@ -62,7 +58,7 @@
         <Button
             variant="simple"
             size="icon"
-            class="mr-5 md:mr-8 h-12 w-12 self-center"
+            class="mr-4 md:mr-8 h-12 w-12 self-center"
             onclick={moveRight}
         >
             <ChevronRight />
