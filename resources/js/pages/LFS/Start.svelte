@@ -15,13 +15,13 @@
 
     ];
 
-    onMount(() => {
-        document.body.classList.add('overflow-y-hidden');
-    });
+    // onMount(() => {
+    //     document.body.classList.add('overflow-y-hidden');
+    // });
 
-    onDestroy(() => {
-        document.body.classList.remove('overflow-y-hidden');
-    });
+    // onDestroy(() => {
+    //     document.body.classList.remove('overflow-y-hidden');
+    // });
 
 </script>
 

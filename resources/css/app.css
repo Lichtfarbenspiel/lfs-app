@@ -210,7 +210,7 @@
 
 
     .vh-header {
-        height: calc(100dvh - var(--header-footer));
+        height: calc(90dvh - var(--header-height));
     }
 
 
