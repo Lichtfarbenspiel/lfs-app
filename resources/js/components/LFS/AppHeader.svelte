@@ -34,7 +34,6 @@
     import { LL } from '../../../../src/i18n/i18n-svelte';
     import { ToggleLanguage } from '@/components/LFS/ui/toggle-language';
 
-
     let {
         breadcrumbs = [],
     }: {
@@ -72,7 +71,7 @@
         <div
             class="mx-auto flex h-(--header-height) items-between justify-between px-4 md:max-w-7xl"
         >
-            <Link href='/' class="flex items-center gap-x-2">
+            <Link href="/" class="flex items-center gap-x-2">
                 <AppLogo />
             </Link>
 
@@ -117,7 +116,9 @@
                                                 ' underline underline-offset-4',
                                             '',
                                         ) ?? ''}"
-                                        item.rel ?? rel={item.rel}
+                                        item.rel
+                                        ??
+                                        rel={item.rel}
                                     >
                                         {#if item.icon}
                                             <item.icon class="h-5 w-5" />
@@ -125,8 +126,11 @@
                                         {$LL.menu[key].title()}
                                     </Link>
                                 {/each}
-                                <ToggleLanguage />
-                                <ToggleTheme />
+                                <div class="flex items-center gap-x-3 px-1">
+                                    <ToggleLanguage />
+                                    <ToggleTheme />
+
+                                </div>
                             </nav>
                         </div>
                     </SheetContent>
