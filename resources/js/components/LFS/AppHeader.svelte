@@ -1,9 +1,6 @@
 <script lang="ts">
     import { Link, page } from '@inertiajs/svelte';
-    import Folder from 'lucide-svelte/icons/folder';
-    import LayoutGrid from 'lucide-svelte/icons/layout-grid';
     import Menu from 'lucide-svelte/icons/menu';
-    import Search from 'lucide-svelte/icons/search';
     import AppLogo from '@/components/LFS/AppLogo.svelte';
     import AppLogoIcon from '@/components/LFS/AppLogoIcon.svelte';
     import Breadcrumbs from '@/components/Breadcrumbs.svelte';
@@ -21,12 +18,6 @@
         SheetTitle,
         SheetTrigger,
     } from '@/components/ui/sheet';
-    import {
-        Tooltip,
-        TooltipContent,
-        TooltipProvider,
-        TooltipTrigger,
-    } from '@/components/ui/tooltip';
     import { currentUrlState } from '@/lib/currentUrl.svelte';
     import { toUrl } from '@/lib/utils';
     import type { BreadcrumbItem, NavItem } from '@/types';
@@ -103,7 +94,6 @@
                         >
                             <nav class="-mx-3 space-y-1">
                                 {#each mainNavItems as item (toUrl(item.href))}
-                                    <!-- {@const menu: keyof Translation['menu'] = item.title.toLocaleLowerCase()} -->
                                     {@const key =
                                         item.title.toLocaleLowerCase()}
 
@@ -145,7 +135,6 @@
                     >
                         {#each mainNavItems as item (toUrl(item.href))}
                             {@const key = item.title.toLocaleLowerCase()}
-                            <!-- {@const menu: keyof Translation['menu'] = key} -->
                             <NavigationMenuItem
                                 class="relative flex h-full items-center"
                             >
@@ -175,45 +164,6 @@
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-
-            <!--   -->
-
-            <!-- <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        {#snippet children(props)}
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                class="relative size-10 w-auto rounded-full p-1 focus-within:ring-2 focus-within:ring-primary"
-                                onclick={props.onclick}
-                                aria-expanded={props['aria-expanded']}
-                                data-state={props['data-state']}
-                            >
-                                <Avatar
-                                    class="size-8 overflow-hidden rounded-full"
-                                >
-                                    {#if auth.user?.avatar}
-                                        <AvatarImage
-                                            src={auth.user.avatar}
-                                            alt={auth.user?.name}
-                                        />
-                                    {/if}
-                                    <AvatarFallback
-                                        class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white"
-                                    >
-                                        {getInitials(auth.user?.name ?? '')}
-                                    </AvatarFallback>
-                                </Avatar>
-                            </Button>
-                        {/snippet}
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" class="w-56">
-                        {#if auth.user}
-                            <UserMenuContent user={auth.user} />
-                        {/if}
-                    </DropdownMenuContent>
-                </DropdownMenu> -->
-            <!-- </div> -->
         </div>
     </div>
 

@@ -7,6 +7,7 @@
     import { Link } from '@inertiajs/svelte';
     import MailIcon from 'lucide-svelte/icons/mail';
     import LL from '../../../../src/i18n/i18n-svelte';
+    import GitHubLogo from '@/components/LFS/GitHubLogo.svelte';
 
     let title = 'about';
 
@@ -33,12 +34,12 @@
                 class="w-3/4 h-auto aspect-square rounded-full object-cover"
             />
         </div>
-        <div
-            class="flex h-auto w-auto flex-col text-foreground text-md gap-4"
-        >{@html $LL.about_description()}</div>
+        <div class="flex h-auto w-auto flex-col text-foreground text-md gap-4">
+            {@html $LL.about_description()}
+        </div>
     </div>
     <div
-        class="grid gap-3 grid-cols-1 md:grid-cols-[1fr_2fr_1fr] text-sm sm:text-md max-w-4xl md:mx-auto md:px-5 justify-between content-between px-5 mt-10 md:mt-16"
+        class="grid gap-3 grid-cols-1 md:grid-cols-[1fr_2fr_1fr_1fr] text-sm sm:text-md max-w-4xl md:mx-auto md:px-5 justify-between content-between px-5 mt-10 md:mt-16"
     >
         <div
             class="flex h-full w-auto text-foreground max-w-4xl justify-start items-start md:items-start"
@@ -63,15 +64,17 @@
                     <div class="flex justify-start">
                         <a
                             class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
-                            href="https://www.instagram.com/lichtfarbenfotografie/" rel="external" target="_blank"
-                            >@{$LL.lichtfarbenfotografie()}</a
+                            href="https://www.instagram.com/lichtfarbenfotografie/"
+                            rel="external"
+                            target="_blank">@{$LL.lichtfarbenfotografie()}</a
                         >
                     </div>
                     <div class="flex justify-start">
                         <a
                             class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
-                            href="https://www.instagram.com/lichtfarbenspiel/" rel="external" target="_blank"
-                            >@{$LL.lichtfarbenspiel()}</a
+                            href="https://www.instagram.com/lichtfarbenspiel/"
+                            rel="external"
+                            target="_blank">@{$LL.lichtfarbenspiel()}</a
                         >
                     </div>
                 </div>
@@ -87,8 +90,26 @@
                 </div>
                 <a
                     class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
-                    href="https://share.monnett.social/u/lichtfarbenspiel" rel="external" target="_blank"
-                    >@{$LL.lichtfarbenspiel()}</a>
+                    href="https://share.monnett.social/u/lichtfarbenspiel"
+                    rel="external"
+                    target="_blank">@{$LL.lichtfarbenspiel()}</a
+                >
+            </div>
+        </div>
+        <div
+            class="flex h-auto w-full text-foreground max-w-4xl justify-start items-start md:justify-end"
+        >
+            <div class="grid grid-rows-2">
+                <div class="flex justify-start items-center gap-2">
+                    <GitHubLogo size={20.0} />
+                    <h2 class="font-serif">{$LL.github()}</h2>
+                </div>
+                <a
+                    class="itransition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:text-accent-foreground"
+                    href="https://github.com/Lichtfarbenspiel"
+                    rel="external"
+                    target="_blank">{$LL.lichtfarbenspiel()}</a
+                >
             </div>
         </div>
     </div>
