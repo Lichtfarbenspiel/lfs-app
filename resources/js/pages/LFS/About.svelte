@@ -4,7 +4,6 @@
     import InstagramLogo from '@/components/LFS/InstagramLogo.svelte';
     import MonnettLogo from '@/components/LFS/MonnettLogo.svelte';
     import { PageTitle } from '@/components/LFS/ui/page-title';
-    import { Link } from '@inertiajs/svelte';
     import MailIcon from 'lucide-svelte/icons/mail';
     import LL from '../../../../src/i18n/i18n-svelte';
     import GitHubLogo from '@/components/LFS/GitHubLogo.svelte';

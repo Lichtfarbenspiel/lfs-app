@@ -2,25 +2,14 @@
     import { onMount } from 'svelte';
     import AppHead from '@/components/AppHead.svelte';
     import StorageController from '@/actions/App/Http/Controllers/StorageController';
-    import {
-        NavigationMenu,
-        NavigationMenuItem,
-        NavigationMenuList,
-        navigationMenuTriggerStyle,
-    } from '@/components/LFS/ui/navigation-menu';
-    import { Link, page } from '@inertiajs/svelte';
-
+   
     import { useHttp } from '@inertiajs/svelte';
-    import Button from '@/components/ui/button/Button.svelte';
     import { currentUrlState } from '@/lib/currentUrl.svelte';
-    import { show } from '@/routes/gallery';
 
     import { FullImage } from '@/components/LFS/ui/full-image';
     import PageTitle from '@/components/LFS/ui/page-title/PageTitle.svelte';
-    import { LL } from '../../../../src/i18n/i18n-svelte';
 
     const url = currentUrlState();
-    // let curUrl: URL | null = null;
     const activeItemStyles =
         'text-(--color-dark-green) dark:text-(--color-light-mint)';
 
@@ -44,7 +33,6 @@
     const title = 'portfolio';
 
     onMount(async () => {
-        // curUrl = new URL(window.location.href);
         imageGalleryElement = document.getElementById('image-gallery'); // lazy load and caching
         fullImageElement = document.getElementById('image-display');
 
@@ -114,13 +102,11 @@
 
             fullImageElement.addEventListener('click', (event) => {
                 hideImage();
-                // fullImageElement.close();
             });
 
             window.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape') {
                     hideImage();
-                    // fullImageElement.close();
                 }
             });
 
@@ -128,21 +114,10 @@
                 if (activeBP != getActiveBreakpoint())
                     assembleGallery(getStoredGalleryKey());
             });
-
-            // updateURLParam('gallery', key);
         } catch (e) {
             console.error('Could not assemble gallery: ' + e);
         }
     }
-
-    // function updateURLParam(key: string, value: string) {
-    //     if (!curUrl || typeof window === 'undefined') return;
-    //     curUrl.searchParams.set(key, value);
-    //     // for (const key of Object.keys(params)) {
-    //     //     curUrl.searchParams.set(key, params[key]); // check for validity
-    //     // }
-    //     window.history.replaceState(null, '', curUrl);
-    // }
 
     function finaliseGalleryMenu() {
         if (!menuItems) return;
@@ -198,8 +173,7 @@
     }
 
     function getStoredGalleryKey(): string {
-        // let params = new URLSearchParams(document.location.search);
-        let galleryStored = localStorage.getItem('gallery') ?? null; //params? params.get("gallery") : null;
+        let galleryStored = localStorage.getItem('gallery') ?? null;
         return galleryStored ?? fallbackGallery;
     }
 
