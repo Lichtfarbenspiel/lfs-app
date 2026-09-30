@@ -28,7 +28,8 @@
     let imageGalleryElement, fullImageElement;
     let curImgSrc = '',
         curImgAlt = '',
-        displayImage = 'hidden';
+        displayImage = 'hidden',
+        curGallery = [];
     var activeBP;
     const title = 'portfolio';
 
@@ -55,10 +56,11 @@
     function assembleGallery(key: string) {
         try {
             const gallery = galleryData[key]; // ToDo: check for error use fallback
+            curGallery = gallery;
             let result = '';
             imageGalleryElement.innerHTML = '';
+
             activeBP = getActiveBreakpoint();
-            console.log('activeBP', activeBP);
             const cols = activeBP == 'xs' ? 1 : activeBP == 'sm' ? 2 : 4;
             let division =
                 gallery.length <= cols
@@ -69,9 +71,6 @@
 
             for (let i = 0; i < gallery.length; i++) {
                 let image = `<button id=${i} class="transparent" command="show-modal" commandfor="image-display"><img class="max-w-full rounded-lg img-hover" src=${gallery[i]} /></button>`;
-                console.log(`${i} startpoint`, startpoint);
-                console.log(`${i} breakpoint`, breakpoint);
-                console.log(`${i} division`, division);
 
                 if (i == startpoint && i == breakpoint) {
                     result += `<div class="grid gap-4 flex">${image}</div>`;
@@ -224,6 +223,7 @@
             alt={curImgAlt}
             class={displayImage}
             onclick={hideImage}
+            gallery={curGallery}
         />
     </div>
 </div>

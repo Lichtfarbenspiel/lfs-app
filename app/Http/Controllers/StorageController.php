@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Symfony\Component\ErrorHandler\Debug;
 
-use function PHPUnit\Framework\isArray;
-use function PHPUnit\Framework\isNull;
 
 class StorageController extends Controller
 {
-    public function index(Request $request, $filename)
+    public function index(Request $request, string $filename)
     {
         $path = "images/" . $filename;
 
