@@ -2,25 +2,14 @@
     import { onMount } from 'svelte';
     import AppHead from '@/components/AppHead.svelte';
     import StorageController from '@/actions/App/Http/Controllers/StorageController';
-    import {
-        NavigationMenu,
-        NavigationMenuItem,
-        NavigationMenuList,
-        navigationMenuTriggerStyle,
-    } from '@/components/LFS/ui/navigation-menu';
-    import { Link, page } from '@inertiajs/svelte';
-
+   
     import { useHttp } from '@inertiajs/svelte';
-    import Button from '@/components/ui/button/Button.svelte';
     import { currentUrlState } from '@/lib/currentUrl.svelte';
-    import { show } from '@/routes/gallery';
 
     import { FullImage } from '@/components/LFS/ui/full-image';
     import PageTitle from '@/components/LFS/ui/page-title/PageTitle.svelte';
-    import { LL } from '../../../../src/i18n/i18n-svelte';
 
     const url = currentUrlState();
-    // let curUrl: URL | null = null;
     const activeItemStyles =
         'text-(--color-dark-green) dark:text-(--color-light-mint)';
 
@@ -39,12 +28,12 @@
     let imageGalleryElement, fullImageElement;
     let curImgSrc = '',
         curImgAlt = '',
-        displayImage = 'hidden';
+        displayImage = 'hidden',
+        curGallery = [];
     var activeBP;
     const title = 'portfolio';
 
     onMount(async () => {
-        // curUrl = new URL(window.location.href);
         imageGalleryElement = document.getElementById('image-gallery'); // lazy load and caching
         fullImageElement = document.getElementById('image-display');
 
@@ -67,10 +56,11 @@
     function assembleGallery(key: string) {
         try {
             const gallery = galleryData[key]; // ToDo: check for error use fallback
+            curGallery = gallery;
             let result = '';
             imageGalleryElement.innerHTML = '';
+
             activeBP = getActiveBreakpoint();
-            console.log('activeBP', activeBP);
             const cols = activeBP == 'xs' ? 1 : activeBP == 'sm' ? 2 : 4;
             let division =
                 gallery.length <= cols
@@ -81,9 +71,6 @@
 
             for (let i = 0; i < gallery.length; i++) {
                 let image = `<button id=${i} class="transparent" command="show-modal" commandfor="image-display"><img class="max-w-full rounded-lg img-hover" src=${gallery[i]} /></button>`;
-                console.log(`${i} startpoint`, startpoint);
-                console.log(`${i} breakpoint`, breakpoint);
-                console.log(`${i} division`, division);
 
                 if (i == startpoint && i == breakpoint) {
                     result += `<div class="grid gap-4 flex">${image}</div>`;
@@ -114,13 +101,11 @@
 
             fullImageElement.addEventListener('click', (event) => {
                 hideImage();
-                // fullImageElement.close();
             });
 
             window.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape') {
                     hideImage();
-                    // fullImageElement.close();
                 }
             });
 
@@ -128,21 +113,10 @@
                 if (activeBP != getActiveBreakpoint())
                     assembleGallery(getStoredGalleryKey());
             });
-
-            // updateURLParam('gallery', key);
         } catch (e) {
             console.error('Could not assemble gallery: ' + e);
         }
     }
-
-    // function updateURLParam(key: string, value: string) {
-    //     if (!curUrl || typeof window === 'undefined') return;
-    //     curUrl.searchParams.set(key, value);
-    //     // for (const key of Object.keys(params)) {
-    //     //     curUrl.searchParams.set(key, params[key]); // check for validity
-    //     // }
-    //     window.history.replaceState(null, '', curUrl);
-    // }
 
     function finaliseGalleryMenu() {
         if (!menuItems) return;
@@ -198,8 +172,7 @@
     }
 
     function getStoredGalleryKey(): string {
-        // let params = new URLSearchParams(document.location.search);
-        let galleryStored = localStorage.getItem('gallery') ?? null; //params? params.get("gallery") : null;
+        let galleryStored = localStorage.getItem('gallery') ?? null;
         return galleryStored ?? fallbackGallery;
     }
 
@@ -250,6 +223,7 @@
             alt={curImgAlt}
             class={displayImage}
             onclick={hideImage}
+            gallery={curGallery}
         />
     </div>
 </div>
